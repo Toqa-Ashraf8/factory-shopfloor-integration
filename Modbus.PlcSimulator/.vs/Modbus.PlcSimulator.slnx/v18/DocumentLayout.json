@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "G:\\Github-Workspace\\factory-shopfloor-integration\\Modbus.PlcSimulator\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7D79A320-E8D3-4D34-AFF2-2120F264D73B}|Modbus.PlcSimulator\\Modbus.PlcSimulator.csproj|g:\\github-workspace\\factory-shopfloor-integration\\modbus.plcsimulator\\modbus.plcsimulator\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{7D79A320-E8D3-4D34-AFF2-2120F264D73B}|Modbus.PlcSimulator\\Modbus.PlcSimulator.csproj|solutionrelative:modbus.plcsimulator\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{7D79A320-E8D3-4D34-AFF2-2120F264D73B}|Modbus.PlcSimulator\\Modbus.PlcSimulator.csproj|g:\\github-workspace\\factory-shopfloor-integration\\modbus.plcsimulator\\modbus.plcsimulator\\formnmodbus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{7D79A320-E8D3-4D34-AFF2-2120F264D73B}|Modbus.PlcSimulator\\Modbus.PlcSimulator.csproj|solutionrelative:modbus.plcsimulator\\formnmodbus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7D79A320-E8D3-4D34-AFF2-2120F264D73B}|Modbus.PlcSimulator\\Modbus.PlcSimulator.csproj|g:\\github-workspace\\factory-shopfloor-integration\\modbus.plcsimulator\\modbus.plcsimulator\\formnmodbus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D79A320-E8D3-4D34-AFF2-2120F264D73B}|Modbus.PlcSimulator\\Modbus.PlcSimulator.csproj|solutionrelative:modbus.plcsimulator\\formnmodbus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7D79A320-E8D3-4D34-AFF2-2120F264D73B}|Modbus.PlcSimulator\\Modbus.PlcSimulator.csproj|g:\\github-workspace\\factory-shopfloor-integration\\modbus.plcsimulator\\modbus.plcsimulator\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D79A320-E8D3-4D34-AFF2-2120F264D73B}|Modbus.PlcSimulator\\Modbus.PlcSimulator.csproj|solutionrelative:modbus.plcsimulator\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -22,12 +30,38 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "G:\\Github-Workspace\\factory-shopfloor-integration\\Modbus.PlcSimulator\\Modbus.PlcSimulator\\Program.cs",
+              "RelativeDocumentMoniker": "Modbus.PlcSimulator\\Program.cs",
+              "ToolTip": "G:\\Github-Workspace\\factory-shopfloor-integration\\Modbus.PlcSimulator\\Modbus.PlcSimulator\\Program.cs",
+              "RelativeToolTip": "Modbus.PlcSimulator\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAiwA8AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-12T11:24:33.987Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FormNModbus.cs",
+              "DocumentMoniker": "G:\\Github-Workspace\\factory-shopfloor-integration\\Modbus.PlcSimulator\\Modbus.PlcSimulator\\FormNModbus.cs",
+              "RelativeDocumentMoniker": "Modbus.PlcSimulator\\FormNModbus.cs",
+              "ToolTip": "G:\\Github-Workspace\\factory-shopfloor-integration\\Modbus.PlcSimulator\\Modbus.PlcSimulator\\FormNModbus.cs",
+              "RelativeToolTip": "Modbus.PlcSimulator\\FormNModbus.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAAADcAAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-12T12:39:45.249Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "G:\\Github-Workspace\\factory-shopfloor-integration\\Modbus.PlcSimulator\\Modbus.PlcSimulator\\Form1.cs",
-              "RelativeDocumentMoniker": "Modbus.PlcSimulator\\Form1.cs",
-              "ToolTip": "G:\\Github-Workspace\\factory-shopfloor-integration\\Modbus.PlcSimulator\\Modbus.PlcSimulator\\Form1.cs [Design]",
-              "RelativeToolTip": "Modbus.PlcSimulator\\Form1.cs [Design]",
+              "Title": "FormNModbus.cs [Design]",
+              "DocumentMoniker": "G:\\Github-Workspace\\factory-shopfloor-integration\\Modbus.PlcSimulator\\Modbus.PlcSimulator\\FormNModbus.cs",
+              "RelativeDocumentMoniker": "Modbus.PlcSimulator\\FormNModbus.cs",
+              "ToolTip": "G:\\Github-Workspace\\factory-shopfloor-integration\\Modbus.PlcSimulator\\Modbus.PlcSimulator\\FormNModbus.cs [Design]",
+              "RelativeToolTip": "Modbus.PlcSimulator\\FormNModbus.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-11T13:36:53.376Z",
               "EditorCaption": " [Design]"

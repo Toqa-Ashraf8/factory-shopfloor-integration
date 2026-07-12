@@ -1,0 +1,15 @@
+G:\Github-Workspace\factory-shopfloor-integration\Modbus.PlcSimulator\Modbus.PlcSimulator\bin\Debug\Modbus.PlcSimulator.exe.config
+G:\Github-Workspace\factory-shopfloor-integration\Modbus.PlcSimulator\Modbus.PlcSimulator\bin\Debug\Modbus.PlcSimulator.exe
+G:\Github-Workspace\factory-shopfloor-integration\Modbus.PlcSimulator\Modbus.PlcSimulator\bin\Debug\Modbus.PlcSimulator.pdb
+G:\Github-Workspace\factory-shopfloor-integration\Modbus.PlcSimulator\Modbus.PlcSimulator\obj\Debug\Modbus.PlcSimulator.csproj.AssemblyReference.cache
+G:\Github-Workspace\factory-shopfloor-integration\Modbus.PlcSimulator\Modbus.PlcSimulator\obj\Debug\Modbus.PlcSimulator.Properties.Resources.resources
+G:\Github-Workspace\factory-shopfloor-integration\Modbus.PlcSimulator\Modbus.PlcSimulator\obj\Debug\Modbus.PlcSimulator.csproj.GenerateResource.cache
+G:\Github-Workspace\factory-shopfloor-integration\Modbus.PlcSimulator\Modbus.PlcSimulator\obj\Debug\Modbus.PlcSimulator.csproj.CoreCompileInputs.cache
+G:\Github-Workspace\factory-shopfloor-integration\Modbus.PlcSimulator\Modbus.PlcSimulator\obj\Debug\Modbus.PlcSimulator.exe
+G:\Github-Workspace\factory-shopfloor-integration\Modbus.PlcSimulator\Modbus.PlcSimulator\obj\Debug\Modbus.PlcSimulator.pdb
+G:\Github-Workspace\factory-shopfloor-integration\Modbus.PlcSimulator\Modbus.PlcSimulator\bin\Debug\EasyModbus.dll
+G:\Github-Workspace\factory-shopfloor-integration\Modbus.PlcSimulator\Modbus.PlcSimulator\bin\Debug\EasyModbus.xml
+G:\Github-Workspace\factory-shopfloor-integration\Modbus.PlcSimulator\Modbus.PlcSimulator\obj\Debug\Modbus.P.359412ED.Up2Date
+G:\Github-Workspace\factory-shopfloor-integration\Modbus.PlcSimulator\Modbus.PlcSimulator\obj\Debug\Modbus.PlcSimulator.FormNModbus.resources
+G:\Github-Workspace\factory-shopfloor-integration\Modbus.PlcSimulator\Modbus.PlcSimulator\bin\Debug\NModbus.dll
+G:\Github-Workspace\factory-shopfloor-integration\Modbus.PlcSimulator\Modbus.PlcSimulator\bin\Debug\NModbus.xml
