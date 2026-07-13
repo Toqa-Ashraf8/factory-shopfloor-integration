@@ -16,7 +16,7 @@ namespace Modbus.PlcSimulator
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormNModbus());
+            Application.Run(new FormEasyModbus());
         }
     }
 }

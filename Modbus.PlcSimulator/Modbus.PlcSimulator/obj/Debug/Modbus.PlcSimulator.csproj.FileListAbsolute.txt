@@ -13,3 +13,4 @@ G:\Github-Workspace\factory-shopfloor-integration\Modbus.PlcSimulator\Modbus.Plc
 G:\Github-Workspace\factory-shopfloor-integration\Modbus.PlcSimulator\Modbus.PlcSimulator\obj\Debug\Modbus.PlcSimulator.FormNModbus.resources
 G:\Github-Workspace\factory-shopfloor-integration\Modbus.PlcSimulator\Modbus.PlcSimulator\bin\Debug\NModbus.dll
 G:\Github-Workspace\factory-shopfloor-integration\Modbus.PlcSimulator\Modbus.PlcSimulator\bin\Debug\NModbus.xml
+G:\Github-Workspace\factory-shopfloor-integration\Modbus.PlcSimulator\Modbus.PlcSimulator\obj\Debug\Modbus.PlcSimulator.FormEasyModbus.resources

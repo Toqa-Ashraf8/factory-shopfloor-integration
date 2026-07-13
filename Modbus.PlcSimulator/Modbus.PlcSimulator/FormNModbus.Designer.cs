@@ -29,16 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnDisconnect = new System.Windows.Forms.Button();
-            this.btnConnect = new System.Windows.Forms.Button();
-            this.txtPort = new System.Windows.Forms.TextBox();
-            this.txtIpAddress = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.Label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblTemperature = new System.Windows.Forms.Label();
-            this.txtRegisterAddress = new System.Windows.Forms.TextBox();
+            this.txtbox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -55,9 +48,9 @@
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.lblProductionCount = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtRegisterAddress = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -65,101 +58,16 @@
             this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.btnDisconnect);
-            this.groupBox1.Controls.Add(this.btnConnect);
-            this.groupBox1.Controls.Add(this.txtPort);
-            this.groupBox1.Controls.Add(this.txtIpAddress);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.Label1);
-            this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(284, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(722, 307);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "PLC Connection Settings";
-            // 
-            // btnDisconnect
-            // 
-            this.btnDisconnect.BackColor = System.Drawing.Color.IndianRed;
-            this.btnDisconnect.FlatAppearance.BorderSize = 0;
-            this.btnDisconnect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDisconnect.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDisconnect.ForeColor = System.Drawing.Color.White;
-            this.btnDisconnect.Location = new System.Drawing.Point(378, 218);
-            this.btnDisconnect.Name = "btnDisconnect";
-            this.btnDisconnect.Size = new System.Drawing.Size(128, 39);
-            this.btnDisconnect.TabIndex = 5;
-            this.btnDisconnect.Text = "Disconnect";
-            this.btnDisconnect.UseVisualStyleBackColor = false;
-            this.btnDisconnect.Click += new System.EventHandler(this.btnDisconnect_Click);
-            // 
-            // btnConnect
-            // 
-            this.btnConnect.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnConnect.FlatAppearance.BorderSize = 0;
-            this.btnConnect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConnect.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConnect.ForeColor = System.Drawing.Color.White;
-            this.btnConnect.Location = new System.Drawing.Point(239, 216);
-            this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(122, 41);
-            this.btnConnect.TabIndex = 4;
-            this.btnConnect.Text = "Connect";
-            this.btnConnect.UseVisualStyleBackColor = false;
-            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
-            // 
-            // txtPort
-            // 
-            this.txtPort.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPort.Location = new System.Drawing.Point(246, 152);
-            this.txtPort.Name = "txtPort";
-            this.txtPort.Size = new System.Drawing.Size(282, 31);
-            this.txtPort.TabIndex = 3;
-            this.txtPort.Text = "502";
-            // 
-            // txtIpAddress
-            // 
-            this.txtIpAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtIpAddress.Location = new System.Drawing.Point(246, 90);
-            this.txtIpAddress.Name = "txtIpAddress";
-            this.txtIpAddress.Size = new System.Drawing.Size(282, 31);
-            this.txtIpAddress.TabIndex = 2;
-            this.txtIpAddress.Text = "127.0.0.1";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(181, 157);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(50, 23);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Port :";
-            // 
-            // Label1
-            // 
-            this.Label1.AutoSize = true;
-            this.Label1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label1.Location = new System.Drawing.Point(132, 95);
-            this.Label1.Name = "Label1";
-            this.Label1.Size = new System.Drawing.Size(99, 23);
-            this.Label1.TabIndex = 0;
-            this.Label1.Text = "IP Address :";
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.lblTemperature);
-            this.groupBox2.Controls.Add(this.txtRegisterAddress);
+            this.groupBox2.Controls.Add(this.txtbox);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.White;
-            this.groupBox2.Location = new System.Drawing.Point(306, 382);
+            this.groupBox2.Location = new System.Drawing.Point(286, 165);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(272, 201);
+            this.groupBox2.Size = new System.Drawing.Size(272, 341);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Heater Temperature";
@@ -175,14 +83,14 @@
             this.lblTemperature.TabIndex = 7;
             this.lblTemperature.Text = "0";
             // 
-            // txtRegisterAddress
+            // txtbox
             // 
-            this.txtRegisterAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtRegisterAddress.Location = new System.Drawing.Point(168, 66);
-            this.txtRegisterAddress.Name = "txtRegisterAddress";
-            this.txtRegisterAddress.Size = new System.Drawing.Size(40, 31);
-            this.txtRegisterAddress.TabIndex = 1;
-            this.txtRegisterAddress.Text = "0";
+            this.txtbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtbox.Location = new System.Drawing.Point(168, 66);
+            this.txtbox.Name = "txtbox";
+            this.txtbox.Size = new System.Drawing.Size(40, 31);
+            this.txtbox.TabIndex = 1;
+            this.txtbox.Text = "1";
             // 
             // label3
             // 
@@ -207,9 +115,9 @@
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.ForeColor = System.Drawing.Color.White;
-            this.groupBox3.Location = new System.Drawing.Point(604, 377);
+            this.groupBox3.Location = new System.Drawing.Point(584, 160);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(282, 204);
+            this.groupBox3.Size = new System.Drawing.Size(282, 346);
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Conveyor Speed";
@@ -232,7 +140,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(40, 31);
             this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "1";
+            this.textBox1.Text = "2";
             // 
             // label5
             // 
@@ -252,9 +160,9 @@
             this.groupBox4.Controls.Add(this.label6);
             this.groupBox4.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.ForeColor = System.Drawing.Color.White;
-            this.groupBox4.Location = new System.Drawing.Point(901, 375);
+            this.groupBox4.Location = new System.Drawing.Point(881, 158);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(235, 206);
+            this.groupBox4.Size = new System.Drawing.Size(235, 348);
             this.groupBox4.TabIndex = 9;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Hydraulic Pressure";
@@ -277,7 +185,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(40, 31);
             this.textBox2.TabIndex = 1;
-            this.textBox2.Text = "1";
+            this.textBox2.Text = "3";
             // 
             // label6
             // 
@@ -297,9 +205,9 @@
             this.groupBox5.Controls.Add(this.label8);
             this.groupBox5.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox5.ForeColor = System.Drawing.Color.White;
-            this.groupBox5.Location = new System.Drawing.Point(1142, 375);
+            this.groupBox5.Location = new System.Drawing.Point(1122, 158);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(225, 206);
+            this.groupBox5.Size = new System.Drawing.Size(225, 348);
             this.groupBox5.TabIndex = 9;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Efficiency";
@@ -322,7 +230,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(40, 31);
             this.textBox3.TabIndex = 1;
-            this.textBox3.Text = "1";
+            this.textBox3.Text = "4";
             // 
             // label8
             // 
@@ -338,13 +246,13 @@
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.lblProductionCount);
-            this.groupBox6.Controls.Add(this.textBox4);
+            this.groupBox6.Controls.Add(this.txtRegisterAddress);
             this.groupBox6.Controls.Add(this.label10);
             this.groupBox6.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox6.ForeColor = System.Drawing.Color.White;
-            this.groupBox6.Location = new System.Drawing.Point(32, 382);
+            this.groupBox6.Location = new System.Drawing.Point(12, 165);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(244, 199);
+            this.groupBox6.Size = new System.Drawing.Size(244, 341);
             this.groupBox6.TabIndex = 11;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Total Production Count";
@@ -360,14 +268,14 @@
             this.lblProductionCount.TabIndex = 7;
             this.lblProductionCount.Text = "0 ";
             // 
-            // textBox4
+            // txtRegisterAddress
             // 
-            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox4.Location = new System.Drawing.Point(169, 66);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(40, 31);
-            this.textBox4.TabIndex = 1;
-            this.textBox4.Text = "1";
+            this.txtRegisterAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtRegisterAddress.Location = new System.Drawing.Point(169, 66);
+            this.txtRegisterAddress.Name = "txtRegisterAddress";
+            this.txtRegisterAddress.Size = new System.Drawing.Size(40, 31);
+            this.txtRegisterAddress.TabIndex = 1;
+            this.txtRegisterAddress.Text = "0";
             // 
             // label10
             // 
@@ -380,25 +288,34 @@
             this.label10.TabIndex = 0;
             this.label10.Text = "Register Address :";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Variable Display", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Aqua;
+            this.label1.Location = new System.Drawing.Point(576, 47);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(229, 58);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "NModbus";
+            // 
             // FormNModbus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(23)))), ((int)(((byte)(42)))));
-            this.ClientSize = new System.Drawing.Size(1397, 706);
+            this.ClientSize = new System.Drawing.Size(1370, 590);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.White;
             this.Name = "FormNModbus";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Shopfloor Integration - Modbus TCP Gateway";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -410,20 +327,13 @@
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label Label1;
-        private System.Windows.Forms.Button btnDisconnect;
-        private System.Windows.Forms.Button btnConnect;
-        private System.Windows.Forms.TextBox txtPort;
-        private System.Windows.Forms.TextBox txtIpAddress;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox txtRegisterAddress;
+        private System.Windows.Forms.TextBox txtbox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblTemperature;
         private System.Windows.Forms.Timer timer1;
@@ -441,8 +351,9 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Label lblProductionCount;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtRegisterAddress;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label1;
     }
 }
 

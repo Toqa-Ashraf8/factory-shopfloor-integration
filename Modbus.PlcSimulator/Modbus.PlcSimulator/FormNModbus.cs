@@ -19,8 +19,10 @@ namespace Modbus.PlcSimulator
         {
             try
             {
-                string ip = txtIpAddress.Text;
-                int port = Convert.ToInt32(txtPort.Text);
+                //string ip = txtIpAddress.Text;
+                //int port = Convert.ToInt32(txtPort.Text);
+                string ip = "127.0.0.1";
+                int port = 502;
 
                 tcpClient = new TcpClient(ip, port);
 

@@ -52,6 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormEasyModbus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEasyModbus.Designer.cs">
+      <DependentUpon>FormEasyModbus.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormNModbus.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +66,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormEasyModbus.resx">
+      <DependentUpon>FormEasyModbus.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormNModbus.resx">
       <DependentUpon>FormNModbus.cs</DependentUpon>
     </EmbeddedResource>
