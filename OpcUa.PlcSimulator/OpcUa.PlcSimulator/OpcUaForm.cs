@@ -1,89 +1,254 @@
-﻿using System;
-using System.Windows.Forms;
-using Opc.UaFx.Client;
-using System.Collections.Generic;
+﻿using Opc.Ua;
+using Opc.Ua.Client;
 using Opc.UaFx;
+using Opc.UaFx.Client;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Drawing;
 
 namespace OpcUa.PlcSimulator
 {
     public partial class OpcUaForm : Form
     {
+        HttpClient client = new HttpClient();
         private OpcClient opcClient;
+        private OpcSubscription counterSubscription;
+        private OpcSubscription tempSubscription;
+
         public OpcUaForm()
         {
             InitializeComponent();
-            txtOpcUrl.Text = "opc.tcp://DESKTOP-5RMLPFJ:53530/OPCUA/SimulationServer";
-            lblStatus.Text = "Status: Disconnected";
-            lblStatus.ForeColor = System.Drawing.Color.Red;
         }
 
-        
-
-        private void btnConnect_Click(object sender, EventArgs e)
+        private void LogToConsole(string message)
         {
+            if (this.IsDisposed || this.Disposing) return;
+            this.Invoke((MethodInvoker)delegate {
+                string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+                rtbConsoleLog.SelectionStart = rtbConsoleLog.TextLength;
+                rtbConsoleLog.SelectionLength = 0;
+
+                rtbConsoleLog.SelectionColor = Color.DarkGray;
+                rtbConsoleLog.AppendText($"[{timestamp}] ");
+
+                rtbConsoleLog.SelectionColor = rtbConsoleLog.ForeColor;
+                rtbConsoleLog.AppendText($"{message}{Environment.NewLine}");
+
+                rtbConsoleLog.ScrollToCaret();
+            });
+        }
+
+        private void btnWriteSettingss_Click(object sender, EventArgs e)
+        {
+            if (opcClient == null || opcClient.State != OpcClientState.Connected)
+            {
+                LogToConsole("Error: OPC UA Server is not connected!");
+                return;
+            }
+
             try
             {
-                opcClient = new OpcClient(txtOpcUrl.Text);
-                opcClient.Connect();
-                lblStatus.Text = "Status: Connected to OPC UA!";
-                lblStatus.ForeColor = System.Drawing.Color.Green;
-                opcTimer.Start();
+                double targetTemp = (double)numTargetTemp.Value;
+                var nodeToWrite = new OpcWriteNode("ns=3;i=1008", targetTemp);
+                opcClient.WriteNodes(nodeToWrite);
+                LogToConsole($"Success: Sent Target Temperature ({targetTemp} °C) to PLC.");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Connection failed: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                LogToConsole($"Writing Error: {ex.Message}");
             }
         }
-        private void opcTimer_Tick(object sender, EventArgs e)
-        {
-            if (opcClient != null && opcClient.State == OpcClientState.Connected)
-            {
-                try
-                {
-                    string constantNodeId = "ns=3;i=1007"; 
-                    string counterNodeId = "ns=3;i=1001";
-                    string randomNodeId = "ns=3;i=1002";
-                    string sawtoothNodeId = "ns=3;i=1003";
-                    string sinusoidNodeId = "ns=3;i=1004";
-                    string squareNodeId = "ns=3;i=1005";
-                    string triangleNodeId = "ns=3;i=1006";
 
-                    IEnumerable<OpcValue> myNodesCollection = opcClient.ReadNodes(new OpcNodeId[] 
-                    { 
-                        constantNodeId, 
-                        counterNodeId, 
-                        randomNodeId, 
-                        sawtoothNodeId, 
-                        sinusoidNodeId, 
-                        squareNodeId, 
-                        triangleNodeId 
-                    });
-                    var valuesList = System.Linq.Enumerable.ToList(myNodesCollection);
-                    
-                    if (valuesList.Count > 0 && valuesList[1] != null && valuesList[1].Value != null)
+        private void ConnectToOPC()
+        {
+            try
+            {
+                opcClient = new OpcClient("opc.tcp://DESKTOP-5RMLPFJ:53530/OPCUA/SimulationServer");
+                opcClient.Connect();
+
+                OpcStatusLED.LedColor = Color.Lime;
+                OpcStatusLED.IsOn = true;
+
+                MachineStatusLED.LedColor = Color.Lime;
+                MachineStatusLED.IsOn = true;
+
+                this.BackColor = SystemColors.Control;
+                LogToConsole("System: Connected to OPC UA Server successfully.");
+
+                counterSubscription = opcClient.SubscribeDataChange("ns=3;i=1001", HandleCounterChanged);
+
+                tempSubscription = opcClient.SubscribeDataChange("ns=3;i=1008", HandleTemperatureChanged);
+
+                LogToConsole("System: Live monitoring activated for Counter and Temperature.");
+            }
+            catch (Exception ex)
+            {
+                OpcStatusLED.LedColor = Color.Red;
+                OpcStatusLED.IsOn = true;
+                MachineStatusLED.LedColor = Color.Red;
+                MachineStatusLED.IsOn = true;
+                this.BackColor = Color.MistyRose;
+
+                LogToConsole($"CRITICAL ERROR: PLC Connection Lost! {ex.Message}");
+                MessageBox.Show("OPC UA Connection failed: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void HandleCounterChanged(object sender, OpcDataChangeReceivedEventArgs e)
+        {
+            if (this.IsDisposed || this.Disposing) return;
+
+            this.Invoke((MethodInvoker)delegate
+            {
+                if (e.Item != null && e.Item.Value != null)
+                {
+                    int currentCountFromPLC = Convert.ToInt32(e.Item.Value.Value);
+                    int targetQty = Convert.ToInt32(txtTargetQty.Text);
+
+                    if (currentCountFromPLC <= targetQty)
                     {
-                        lblTemperature.Text = valuesList[1].Value.ToString() + " °C";
+                        lblCurrentCountValue.Text = $"{currentCountFromPLC} / {targetQty}";
                     }
-                    
+
+                    if (currentCountFromPLC >= targetQty)
+                    {
+                        lblCurrentCountValue.Text = $"{targetQty} / {targetQty}";
+
+                        LogToConsole("SUCCESS: Production Target Reached! Stopping the node counter...");
+
+                        try
+                        {
+                            if (opcClient != null && opcClient.State == OpcClientState.Connected)
+                            {
+                                var resetCounterNode = new OpcWriteNode("ns=3;i=1001", 0);
+                                opcClient.WriteNodes(resetCounterNode);
+                                LogToConsole("System: Sent Reset command to Node i=1001 to stop counting.");
+
+                                var stopNode = new OpcWriteNode("ns=3;i=1009", false);
+                                opcClient.WriteNodes(stopNode);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            LogToConsole($"PLC Stop Error: {ex.Message}");
+                        }
+
+                        MachineStatusLED.LedColor = Color.Gray;
+                        MachineStatusLED.IsOn = false;
+
+                        if (counterSubscription != null)
+                        {
+                            counterSubscription.Unsubscribe();
+                            LogToConsole("System: Counter subscription paused.");
+                        }
+
+                        this.BackColor = Color.LightGreen;
+
+                        PlayIndustrialAlarm();
+
+                        MessageBox.Show("Production Target Reached Successfully!\nMachine and Counter Node stopped.",
+                                        "Order Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
-                catch (Exception ex)
+            });
+        }
+
+        private void HandleTemperatureChanged(object sender, OpcDataChangeReceivedEventArgs e)
+        {
+            if (this.IsDisposed || this.Disposing) return;
+
+            this.Invoke((MethodInvoker)delegate
+            {
+                if (e.Item != null && e.Item.Value != null)
                 {
-                    opcTimer.Stop();
-                    MessageBox.Show("Error reading nodes: " + ex.Message, "OPC Read Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    lblStatus.Text = "Status: Error Reading!";
-                    lblStatus.ForeColor = System.Drawing.Color.Red;
+                    double currentTemp = Convert.ToDouble(e.Item.Value.Value);
+                    lblOvenTempValue.Text = $"{currentTemp:F1} °C";
+                }
+            });
+        }
+
+        private void btnStartPro_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtWorkOrderCode.Text))
+            {
+                MessageBox.Show("Please select a Work Order from the table first!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            ConnectToOPC();
+        }
+
+        private void btnStopProduction_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtTargetQty.Text))
+            {
+                string[] parts = lblCurrentCountValue.Text.Split('/');
+                int currentCount = parts.Length > 0 ? Convert.ToInt32(parts[0].Trim()) : 0;
+                int targetQty = Convert.ToInt32(txtTargetQty.Text);
+
+                if (currentCount < targetQty)
+                {
+                    int scrapCount = targetQty - currentCount;
+                    LogToConsole($"PRODUCTION STOPPED: Target was {targetQty}, Completed: {currentCount}. Scrap detected: {scrapCount} units.");
+                    MessageBox.Show($"Production stopped early! Scrap units detected: {scrapCount}", "Scrap Report", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
 
-        private void btnDisconnect_Click(object sender, EventArgs e)
+        private async Task LoadActiveWorkOrders()
         {
-            if (opcClient != null)
+            try
             {
-                opcTimer.Stop();
-                opcClient.Disconnect();
-                lblStatus.Text = "Status: Disconnected";
-                lblStatus.ForeColor = System.Drawing.Color.Red;
+                string apiURL = "https://localhost:7088/api/WorkOrders/GetReleasedWO";
+                var response = await client.GetAsync(apiURL);
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonString = await response.Content.ReadAsStringAsync();
+                    var workOrders = Newtonsoft.Json.JsonConvert.DeserializeObject<List<WorkOrderDTO>>(jsonString);
+                    dgvWorkOrders.DataSource = workOrders;
+                    FormatDataGridView();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Could not connect to ERP Server: {ex.Message}", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void FormatDataGridView()
+        {
+            dgvWorkOrders.Columns["WorkOrderCode"].HeaderText = "Order Code";
+            dgvWorkOrders.Columns["ProductName"].HeaderText = "Item Name";
+            dgvWorkOrders.Columns["TargetQuantity"].HeaderText = "Target Qty";
+            dgvWorkOrders.Columns["TargetTemperature"].HeaderText = "Target Temp (°C)";
+            dgvWorkOrders.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvWorkOrders.Columns[dgvWorkOrders.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+        }
+
+        private async void OpcUaForm_Load(object sender, EventArgs e) => await LoadActiveWorkOrders();
+
+        private void dgvWorkOrders_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgvWorkOrders.Rows[e.RowIndex];
+                txtWorkOrderCode.Text = row.Cells["WorkOrderCode"].Value?.ToString() ?? "";
+                txtItemName.Text = row.Cells["ProductName"].Value?.ToString() ?? "";
+                txtTargetQty.Text = row.Cells["TargetQuantity"].Value?.ToString() ?? "0";
+                numTargetTemp.Value = Convert.ToDecimal(row.Cells["TargetTemperature"].Value ?? 0);
+                lblCurrentCountValue.Text = $"0 / {txtTargetQty.Text}";
+            }
+        }
+        private void PlayIndustrialAlarm()
+        {
+            
+            for (int i = 0; i < 3; i++)
+            {
+                Console.Beep(1500, 150); 
+                Console.Beep(1000, 150); 
             }
         }
     }

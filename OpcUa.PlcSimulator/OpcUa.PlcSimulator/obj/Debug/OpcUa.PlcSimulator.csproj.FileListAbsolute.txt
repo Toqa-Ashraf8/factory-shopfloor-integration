@@ -1,13 +1,6 @@
 G:\Github-Workspace\factory-shopfloor-integration\OpcUa.PlcSimulator\OpcUa.PlcSimulator\bin\Debug\OpcUa.PlcSimulator.exe.config
 G:\Github-Workspace\factory-shopfloor-integration\OpcUa.PlcSimulator\OpcUa.PlcSimulator\bin\Debug\OpcUa.PlcSimulator.exe
 G:\Github-Workspace\factory-shopfloor-integration\OpcUa.PlcSimulator\OpcUa.PlcSimulator\bin\Debug\OpcUa.PlcSimulator.pdb
-G:\Github-Workspace\factory-shopfloor-integration\OpcUa.PlcSimulator\OpcUa.PlcSimulator\obj\Debug\OpcUa.PlcSimulator.csproj.AssemblyReference.cache
-G:\Github-Workspace\factory-shopfloor-integration\OpcUa.PlcSimulator\OpcUa.PlcSimulator\obj\Debug\OpcUa.PlcSimulator.OpcUaForm.resources
-G:\Github-Workspace\factory-shopfloor-integration\OpcUa.PlcSimulator\OpcUa.PlcSimulator\obj\Debug\OpcUa.PlcSimulator.Properties.Resources.resources
-G:\Github-Workspace\factory-shopfloor-integration\OpcUa.PlcSimulator\OpcUa.PlcSimulator\obj\Debug\OpcUa.PlcSimulator.csproj.GenerateResource.cache
-G:\Github-Workspace\factory-shopfloor-integration\OpcUa.PlcSimulator\OpcUa.PlcSimulator\obj\Debug\OpcUa.PlcSimulator.csproj.CoreCompileInputs.cache
-G:\Github-Workspace\factory-shopfloor-integration\OpcUa.PlcSimulator\OpcUa.PlcSimulator\obj\Debug\OpcUa.PlcSimulator.exe
-G:\Github-Workspace\factory-shopfloor-integration\OpcUa.PlcSimulator\OpcUa.PlcSimulator\obj\Debug\OpcUa.PlcSimulator.pdb
 G:\Github-Workspace\factory-shopfloor-integration\OpcUa.PlcSimulator\OpcUa.PlcSimulator\bin\Debug\BouncyCastle.Crypto.dll
 G:\Github-Workspace\factory-shopfloor-integration\OpcUa.PlcSimulator\OpcUa.PlcSimulator\bin\Debug\Newtonsoft.Json.dll
 G:\Github-Workspace\factory-shopfloor-integration\OpcUa.PlcSimulator\OpcUa.PlcSimulator\bin\Debug\Opc.UaFx.Client.dll
@@ -23,4 +16,11 @@ G:\Github-Workspace\factory-shopfloor-integration\OpcUa.PlcSimulator\OpcUa.PlcSi
 G:\Github-Workspace\factory-shopfloor-integration\OpcUa.PlcSimulator\OpcUa.PlcSimulator\bin\Debug\System.Memory.xml
 G:\Github-Workspace\factory-shopfloor-integration\OpcUa.PlcSimulator\OpcUa.PlcSimulator\bin\Debug\System.Numerics.Vectors.xml
 G:\Github-Workspace\factory-shopfloor-integration\OpcUa.PlcSimulator\OpcUa.PlcSimulator\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+G:\Github-Workspace\factory-shopfloor-integration\OpcUa.PlcSimulator\OpcUa.PlcSimulator\obj\Debug\OpcUa.PlcSimulator.csproj.AssemblyReference.cache
+G:\Github-Workspace\factory-shopfloor-integration\OpcUa.PlcSimulator\OpcUa.PlcSimulator\obj\Debug\OpcUa.PlcSimulator.OpcUaForm.resources
+G:\Github-Workspace\factory-shopfloor-integration\OpcUa.PlcSimulator\OpcUa.PlcSimulator\obj\Debug\OpcUa.PlcSimulator.Properties.Resources.resources
+G:\Github-Workspace\factory-shopfloor-integration\OpcUa.PlcSimulator\OpcUa.PlcSimulator\obj\Debug\OpcUa.PlcSimulator.csproj.GenerateResource.cache
+G:\Github-Workspace\factory-shopfloor-integration\OpcUa.PlcSimulator\OpcUa.PlcSimulator\obj\Debug\OpcUa.PlcSimulator.csproj.CoreCompileInputs.cache
 G:\Github-Workspace\factory-shopfloor-integration\OpcUa.PlcSimulator\OpcUa.PlcSimulator\obj\Debug\OpcUa.Pl.22F57B8D.Up2Date
+G:\Github-Workspace\factory-shopfloor-integration\OpcUa.PlcSimulator\OpcUa.PlcSimulator\obj\Debug\OpcUa.PlcSimulator.exe
+G:\Github-Workspace\factory-shopfloor-integration\OpcUa.PlcSimulator\OpcUa.PlcSimulator\obj\Debug\OpcUa.PlcSimulator.pdb
