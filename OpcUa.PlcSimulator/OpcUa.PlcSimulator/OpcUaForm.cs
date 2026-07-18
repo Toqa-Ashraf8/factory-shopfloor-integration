@@ -17,6 +17,7 @@ namespace OpcUa.PlcSimulator
         private OpcClient opcClient;
         private OpcSubscription counterSubscription;
         private OpcSubscription tempSubscription;
+        private bool isAlarmColorToggle = false;
 
         public OpcUaForm()
         {
@@ -179,6 +180,8 @@ namespace OpcUa.PlcSimulator
                 return;
             }
             ConnectToOPC();
+            alarmTimer.Stop();
+            this.BackColor = SystemColors.Control;
         }
 
         private void btnStopProduction_Click(object sender, EventArgs e)
@@ -249,6 +252,80 @@ namespace OpcUa.PlcSimulator
             {
                 Console.Beep(1500, 150); 
                 Console.Beep(1000, 150); 
+            }
+        }
+
+        private void btnStopProduction_Click_1(object sender, EventArgs e)
+        {
+           
+            if (opcClient == null || opcClient.State != OpcClientState.Connected)
+            {
+                LogToConsole("Warning: Cannot send STOP command. OPC UA Server is not connected.");
+                return;
+            }
+
+            try
+            {
+                LogToConsole("🚨 CRITICAL ACTION: Operator pressed PAUSE/STOP Production!");
+
+                var stopMachineNode = new OpcWriteNode("ns=3;i=1008", false);
+                opcClient.WriteNodes(stopMachineNode);
+                LogToConsole("System [PLC]: Sent STOP command to Node i=1008");
+
+                if (counterSubscription != null)
+                {
+                    counterSubscription.Unsubscribe();
+                    LogToConsole("System: Counter live subscription paused.");
+                }
+
+                MachineStatusLED.LedColor = Color.Red;
+                MachineStatusLED.IsOn = true;
+                OpcStatusLED.LedColor = Color.Red;
+                OpcStatusLED.IsOn = true;
+
+                alarmTimer.Start();
+
+                if (!string.IsNullOrEmpty(txtTargetQty.Text))
+                {
+                    string[] parts = lblCurrentCountValue.Text.Split('/');
+                    int currentCount = parts.Length > 0 ? Convert.ToInt32(parts[0].Trim()) : 0;
+                    int targetQty = Convert.ToInt32(txtTargetQty.Text);
+                    int scrapCount = targetQty - currentCount;
+
+                    MessageBox.Show($"🚨 EMERGENCY STOP TRIGGERED!\nProduction halted early.\nScrap/Missing: {scrapCount} units.",
+                                    "Emergency Stop", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                LogToConsole($"Error during manual stop: {ex.Message}");
+            }
+        }
+
+        private void alarmTimer_Tick(object sender, EventArgs e)
+        {
+            isAlarmColorToggle = !isAlarmColorToggle;
+
+            if (isAlarmColorToggle)
+            {
+                this.BackColor = Color.Red;
+
+                Console.Beep(1200, 200);
+            }
+            else
+            {
+                this.BackColor = SystemColors.Control;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (alarmTimer.Enabled)
+            {
+                alarmTimer.Stop(); 
+                this.BackColor = Color.Khaki; 
+                LogToConsole("Operator acknowledged the alarm. Siren muted.");
             }
         }
     }

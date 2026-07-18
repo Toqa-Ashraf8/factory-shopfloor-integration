@@ -42,8 +42,6 @@
             this.lblTargetQtyHeader = new System.Windows.Forms.Label();
             this.lblProductHeader = new System.Windows.Forms.Label();
             this.lblWorkOrderHeader = new System.Windows.Forms.Label();
-            this.btnStartPro = new System.Windows.Forms.Button();
-            this.btnStopProduction = new System.Windows.Forms.Button();
             this.grpTelemetry = new System.Windows.Forms.GroupBox();
             this.btnWriteSettingss = new System.Windows.Forms.Button();
             this.numTargetTemp = new System.Windows.Forms.NumericUpDown();
@@ -57,8 +55,13 @@
             this.lblOpcStatusText = new System.Windows.Forms.Label();
             this.rtbConsoleLog = new System.Windows.Forms.RichTextBox();
             this.dgvWorkOrders = new System.Windows.Forms.DataGridView();
+            this.alarmTimer = new System.Windows.Forms.Timer(this.components);
             this.MachineStatusLED = new OpcUa.PlcSimulator.IndustrialLed();
             this.OpcStatusLED = new OpcUa.PlcSimulator.IndustrialLed();
+            this.btnStartPro = new System.Windows.Forms.Button();
+            this.btnStopProduction = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.grpWorkOrderDetails.SuspendLayout();
             this.grpMachineTelemetry.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -67,6 +70,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numTargetTemp)).BeginInit();
             this.grpSystemStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvWorkOrders)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // opcTimer
@@ -219,7 +223,7 @@
             this.grpWorkOrder.Controls.Add(this.lblProductHeader);
             this.grpWorkOrder.Controls.Add(this.lblWorkOrderHeader);
             this.grpWorkOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpWorkOrder.Location = new System.Drawing.Point(47, 39);
+            this.grpWorkOrder.Location = new System.Drawing.Point(12, 12);
             this.grpWorkOrder.Name = "grpWorkOrder";
             this.grpWorkOrder.Size = new System.Drawing.Size(576, 177);
             this.grpWorkOrder.TabIndex = 0;
@@ -277,33 +281,6 @@
             this.lblWorkOrderHeader.TabIndex = 0;
             this.lblWorkOrderHeader.Text = "Work Order Code:";
             // 
-            // btnStartPro
-            // 
-            this.btnStartPro.BackColor = System.Drawing.Color.LimeGreen;
-            this.btnStartPro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStartPro.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStartPro.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnStartPro.Location = new System.Drawing.Point(95, 489);
-            this.btnStartPro.Name = "btnStartPro";
-            this.btnStartPro.Size = new System.Drawing.Size(215, 34);
-            this.btnStartPro.TabIndex = 1;
-            this.btnStartPro.Text = "START PRODUCTION";
-            this.btnStartPro.UseVisualStyleBackColor = false;
-            this.btnStartPro.Click += new System.EventHandler(this.btnStartPro_Click);
-            // 
-            // btnStopProduction
-            // 
-            this.btnStopProduction.BackColor = System.Drawing.Color.Crimson;
-            this.btnStopProduction.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStopProduction.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStopProduction.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnStopProduction.Location = new System.Drawing.Point(332, 489);
-            this.btnStopProduction.Name = "btnStopProduction";
-            this.btnStopProduction.Size = new System.Drawing.Size(215, 36);
-            this.btnStopProduction.TabIndex = 2;
-            this.btnStopProduction.Text = "STOP / PAUSE";
-            this.btnStopProduction.UseVisualStyleBackColor = false;
-            // 
             // grpTelemetry
             // 
             this.grpTelemetry.Controls.Add(this.btnWriteSettingss);
@@ -314,9 +291,9 @@
             this.grpTelemetry.Controls.Add(this.lblOvenTempHeader);
             this.grpTelemetry.Controls.Add(this.lblCurrentCountValue);
             this.grpTelemetry.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpTelemetry.Location = new System.Drawing.Point(44, 241);
+            this.grpTelemetry.Location = new System.Drawing.Point(10, 211);
             this.grpTelemetry.Name = "grpTelemetry";
-            this.grpTelemetry.Size = new System.Drawing.Size(579, 232);
+            this.grpTelemetry.Size = new System.Drawing.Size(576, 241);
             this.grpTelemetry.TabIndex = 3;
             this.grpTelemetry.TabStop = false;
             this.grpTelemetry.Text = "Live Machine Telemetry (OPC UA Node Monitoring)";
@@ -327,9 +304,9 @@
             this.btnWriteSettingss.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnWriteSettingss.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnWriteSettingss.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnWriteSettingss.Location = new System.Drawing.Point(394, 83);
+            this.btnWriteSettingss.Location = new System.Drawing.Point(403, 83);
             this.btnWriteSettingss.Name = "btnWriteSettingss";
-            this.btnWriteSettingss.Size = new System.Drawing.Size(167, 68);
+            this.btnWriteSettingss.Size = new System.Drawing.Size(158, 68);
             this.btnWriteSettingss.TabIndex = 4;
             this.btnWriteSettingss.Text = "WRITE TO OPC NODE";
             this.btnWriteSettingss.UseVisualStyleBackColor = false;
@@ -406,9 +383,9 @@
             this.grpSystemStatus.Controls.Add(this.lblMachineStatusText);
             this.grpSystemStatus.Controls.Add(this.lblOpcStatusText);
             this.grpSystemStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpSystemStatus.Location = new System.Drawing.Point(738, 39);
+            this.grpSystemStatus.Location = new System.Drawing.Point(663, 12);
             this.grpSystemStatus.Name = "grpSystemStatus";
-            this.grpSystemStatus.Size = new System.Drawing.Size(486, 186);
+            this.grpSystemStatus.Size = new System.Drawing.Size(371, 177);
             this.grpSystemStatus.TabIndex = 4;
             this.grpSystemStatus.TabStop = false;
             this.grpSystemStatus.Text = "System Status & Diagnostics";
@@ -439,31 +416,36 @@
             this.rtbConsoleLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtbConsoleLog.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtbConsoleLog.ForeColor = System.Drawing.Color.Gainsboro;
-            this.rtbConsoleLog.Location = new System.Drawing.Point(68, 550);
+            this.rtbConsoleLog.Location = new System.Drawing.Point(-3, 632);
             this.rtbConsoleLog.Name = "rtbConsoleLog";
             this.rtbConsoleLog.ReadOnly = true;
-            this.rtbConsoleLog.Size = new System.Drawing.Size(1201, 94);
+            this.rtbConsoleLog.Size = new System.Drawing.Size(1102, 124);
             this.rtbConsoleLog.TabIndex = 6;
             this.rtbConsoleLog.Text = "";
             // 
             // dgvWorkOrders
             // 
             this.dgvWorkOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvWorkOrders.Location = new System.Drawing.Point(640, 249);
+            this.dgvWorkOrders.Location = new System.Drawing.Point(-3, 458);
             this.dgvWorkOrders.Name = "dgvWorkOrders";
             this.dgvWorkOrders.RowHeadersWidth = 51;
             this.dgvWorkOrders.RowTemplate.Height = 24;
-            this.dgvWorkOrders.Size = new System.Drawing.Size(651, 254);
+            this.dgvWorkOrders.Size = new System.Drawing.Size(1095, 168);
             this.dgvWorkOrders.TabIndex = 7;
             this.dgvWorkOrders.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvWorkOrders_CellClick);
+            // 
+            // alarmTimer
+            // 
+            this.alarmTimer.Interval = 1000;
+            this.alarmTimer.Tick += new System.EventHandler(this.alarmTimer_Tick);
             // 
             // MachineStatusLED
             // 
             this.MachineStatusLED.IsOn = false;
             this.MachineStatusLED.LedColor = System.Drawing.Color.DarkGray;
-            this.MachineStatusLED.Location = new System.Drawing.Point(375, 103);
+            this.MachineStatusLED.Location = new System.Drawing.Point(272, 118);
             this.MachineStatusLED.Name = "MachineStatusLED";
-            this.MachineStatusLED.Size = new System.Drawing.Size(72, 69);
+            this.MachineStatusLED.Size = new System.Drawing.Size(51, 46);
             this.MachineStatusLED.TabIndex = 7;
             this.MachineStatusLED.Text = "industrialLed1";
             // 
@@ -471,21 +453,71 @@
             // 
             this.OpcStatusLED.IsOn = false;
             this.OpcStatusLED.LedColor = System.Drawing.Color.DarkGray;
-            this.OpcStatusLED.Location = new System.Drawing.Point(375, 20);
+            this.OpcStatusLED.Location = new System.Drawing.Point(272, 44);
             this.OpcStatusLED.Name = "OpcStatusLED";
-            this.OpcStatusLED.Size = new System.Drawing.Size(72, 71);
+            this.OpcStatusLED.Size = new System.Drawing.Size(51, 46);
             this.OpcStatusLED.TabIndex = 7;
             this.OpcStatusLED.Text = "industrialLed1";
             // 
+            // btnStartPro
+            // 
+            this.btnStartPro.BackColor = System.Drawing.Color.LimeGreen;
+            this.btnStartPro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStartPro.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStartPro.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnStartPro.Location = new System.Drawing.Point(72, 29);
+            this.btnStartPro.Name = "btnStartPro";
+            this.btnStartPro.Size = new System.Drawing.Size(215, 36);
+            this.btnStartPro.TabIndex = 0;
+            this.btnStartPro.Text = "START PRODUCTION";
+            this.btnStartPro.UseVisualStyleBackColor = false;
+            this.btnStartPro.Click += new System.EventHandler(this.btnStartPro_Click);
+            // 
+            // btnStopProduction
+            // 
+            this.btnStopProduction.BackColor = System.Drawing.Color.Crimson;
+            this.btnStopProduction.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStopProduction.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStopProduction.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnStopProduction.Location = new System.Drawing.Point(72, 86);
+            this.btnStopProduction.Name = "btnStopProduction";
+            this.btnStopProduction.Size = new System.Drawing.Size(215, 36);
+            this.btnStopProduction.TabIndex = 1;
+            this.btnStopProduction.Text = "STOP / PAUSE";
+            this.btnStopProduction.UseVisualStyleBackColor = false;
+            this.btnStopProduction.Click += new System.EventHandler(this.btnStopProduction_Click_1);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Image = global::OpcUa.PlcSimulator.Properties.Resources.icons8_mute_sound_32;
+            this.button1.Location = new System.Drawing.Point(72, 147);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(215, 36);
+            this.button1.TabIndex = 2;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnStartPro);
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.btnStopProduction);
+            this.groupBox1.Location = new System.Drawing.Point(655, 223);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(354, 202);
+            this.groupBox1.TabIndex = 8;
+            this.groupBox1.TabStop = false;
+            // 
             // OpcUaForm
             // 
-            this.ClientSize = new System.Drawing.Size(1341, 673);
+            this.ClientSize = new System.Drawing.Size(1111, 768);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgvWorkOrders);
             this.Controls.Add(this.rtbConsoleLog);
             this.Controls.Add(this.grpSystemStatus);
             this.Controls.Add(this.grpTelemetry);
-            this.Controls.Add(this.btnStopProduction);
-            this.Controls.Add(this.btnStartPro);
             this.Controls.Add(this.grpWorkOrder);
             this.Name = "OpcUaForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -505,6 +537,7 @@
             this.grpSystemStatus.ResumeLayout(false);
             this.grpSystemStatus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvWorkOrders)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -528,8 +561,6 @@
         private System.Windows.Forms.Label lblTargetQtyHeader;
         private System.Windows.Forms.Label lblProductHeader;
         private System.Windows.Forms.Label lblWorkOrderHeader;
-        private System.Windows.Forms.Button btnStartPro;
-        private System.Windows.Forms.Button btnStopProduction;
         private System.Windows.Forms.GroupBox grpTelemetry;
         private System.Windows.Forms.NumericUpDown numTargetTemp;
         private System.Windows.Forms.Label lblCurrentCountHeader;
@@ -548,6 +579,11 @@
         private System.Windows.Forms.TextBox txtWorkOrderCode;
         private System.Windows.Forms.Label lblOvenTempValue;
         private System.Windows.Forms.Label lblCurrentCountValue;
+        private System.Windows.Forms.Timer alarmTimer;
+        private System.Windows.Forms.Button btnStartPro;
+        private System.Windows.Forms.Button btnStopProduction;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 
