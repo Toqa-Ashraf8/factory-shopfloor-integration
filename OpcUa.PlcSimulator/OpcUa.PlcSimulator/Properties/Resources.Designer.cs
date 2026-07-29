@@ -63,19 +63,9 @@ namespace OpcUa.PlcSimulator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap rfid__2_ {
+        internal static System.Drawing.Bitmap signal {
             get {
-                object obj = ResourceManager.GetObject("rfid (2)", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap rfid__3_ {
-            get {
-                object obj = ResourceManager.GetObject("rfid (3)", resourceCulture);
+                object obj = ResourceManager.GetObject("signal", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -18,24 +18,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "FrmStationConsole.cs",
-              "DocumentMoniker": "G:\\FACTORY\\factory-shopfloor-integration\\OpcUa.PlcSimulator\\OpcUa.PlcSimulator\\FrmStationConsole.cs",
-              "RelativeDocumentMoniker": "OpcUa.PlcSimulator\\FrmStationConsole.cs",
-              "ToolTip": "G:\\FACTORY\\factory-shopfloor-integration\\OpcUa.PlcSimulator\\OpcUa.PlcSimulator\\FrmStationConsole.cs",
-              "RelativeToolTip": "OpcUa.PlcSimulator\\FrmStationConsole.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGQAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-29T11:35:36.471Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -46,8 +33,21 @@
               "ToolTip": "G:\\FACTORY\\factory-shopfloor-integration\\OpcUa.PlcSimulator\\OpcUa.PlcSimulator\\FrmStationConsole.cs [Design]",
               "RelativeToolTip": "OpcUa.PlcSimulator\\FrmStationConsole.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-20T18:58:36.788Z",
+              "WhenOpened": "2026-07-29T15:25:19.415Z",
               "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FrmStationConsole.cs",
+              "DocumentMoniker": "G:\\FACTORY\\factory-shopfloor-integration\\OpcUa.PlcSimulator\\OpcUa.PlcSimulator\\FrmStationConsole.cs",
+              "RelativeDocumentMoniker": "OpcUa.PlcSimulator\\FrmStationConsole.cs",
+              "ToolTip": "G:\\FACTORY\\factory-shopfloor-integration\\OpcUa.PlcSimulator\\OpcUa.PlcSimulator\\FrmStationConsole.cs",
+              "RelativeToolTip": "OpcUa.PlcSimulator\\FrmStationConsole.cs",
+              "ViewState": "AgIAAFkAAAAAAAAAAAAvwGcAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-29T15:24:56.559Z",
+              "EditorCaption": ""
             }
           ]
         }

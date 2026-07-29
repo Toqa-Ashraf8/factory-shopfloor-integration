@@ -125,10 +125,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\rfid %282%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\rfid %283%29.png" />
+    <None Include="Resources\signal.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
