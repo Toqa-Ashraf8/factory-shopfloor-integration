@@ -1,332 +1,376 @@
-﻿using Opc.Ua;
-using Opc.Ua.Client;
-using Opc.UaFx;
-using Opc.UaFx.Client;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Drawing;
+﻿//using Opc.Ua;
+//using Opc.Ua.Client;
+//using Opc.UaFx;
+//using Opc.UaFx.Client;
+//using System;
+//using System.Collections.Generic;
+//using System.Net.Http;
+//using System.Threading.Tasks;
+//using System.Windows.Forms;
+//using System.Drawing;
 
-namespace OpcUa.PlcSimulator
-{
-    public partial class OpcUaForm : Form
-    {
-        HttpClient client = new HttpClient();
-        private OpcClient opcClient;
-        private OpcSubscription counterSubscription;
-        private OpcSubscription tempSubscription;
-        private bool isAlarmColorToggle = false;
+//namespace OpcUa.PlcSimulator
+//{
+//    public partial class OpcUaForm_ : Form
+//    {
+//        HttpClient client = new HttpClient();
+//        private OpcClient opcClient;
+//        private OpcSubscription counterSubscription;
+//        private OpcSubscription tempSubscription;
+//        private bool isAlarmColorToggle = false;
 
-        public OpcUaForm()
-        {
-            InitializeComponent();
-        }
+//        public enum LogType
+//        {
+//            Info,
+//            Warning,
+//            Error
+//        }
 
-        private void LogToConsole(string message)
-        {
-            if (this.IsDisposed || this.Disposing) return;
-            this.Invoke((MethodInvoker)delegate {
-                string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+//        public OpcUaForm_()
+//        {
+//            InitializeComponent();
+//        }
 
-                rtbConsoleLog.SelectionStart = rtbConsoleLog.TextLength;
-                rtbConsoleLog.SelectionLength = 0;
+//        private void LogToConsole(string message, LogType type = LogType.Info)
+//        {
+//            if (tabPage1.IsDisposed || tabPage1.Disposing) return;
 
-                rtbConsoleLog.SelectionColor = Color.DarkGray;
-                rtbConsoleLog.AppendText($"[{timestamp}] ");
+//            tabPage1.Invoke((MethodInvoker)delegate {
+//                string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
-                rtbConsoleLog.SelectionColor = rtbConsoleLog.ForeColor;
-                rtbConsoleLog.AppendText($"{message}{Environment.NewLine}");
+//                if (rtbConsoleLog.Lines.Length > 100)
+//                {
+//                    string[] currentLines = rtbConsoleLog.Lines;
+//                    string[] newLines = new string[80];
+//                    Array.Copy(currentLines, 20, newLines, 0, 80);
+//                    rtbConsoleLog.Lines = newLines;
+//                }
 
-                rtbConsoleLog.ScrollToCaret();
-            });
-        }
+//                rtbConsoleLog.SelectionStart = rtbConsoleLog.TextLength;
+//                rtbConsoleLog.SelectionLength = 0;
 
-        private void btnWriteSettingss_Click(object sender, EventArgs e)
-        {
-            if (opcClient == null || opcClient.State != OpcClientState.Connected)
-            {
-                LogToConsole("Error: OPC UA Server is not connected!");
-                return;
-            }
+//                rtbConsoleLog.SelectionColor = Color.DarkGray;
+//                rtbConsoleLog.AppendText($"[{timestamp}] ");
 
-            try
-            {
-                double targetTemp = (double)numTargetTemp.Value;
-                var nodeToWrite = new OpcWriteNode("ns=3;i=1008", targetTemp);
-                opcClient.WriteNodes(nodeToWrite);
-                LogToConsole($"Success: Sent Target Temperature ({targetTemp} °C) to PLC.");
-            }
-            catch (Exception ex)
-            {
-                LogToConsole($"Writing Error: {ex.Message}");
-            }
-        }
+//                switch (type)
+//                {
+//                    case LogType.Info:
+//                        rtbConsoleLog.SelectionColor = Color.White;
+//                        break;
+//                    case LogType.Warning:
+//                        rtbConsoleLog.SelectionColor = Color.Orange;
+//                        break;
+//                    case LogType.Error:
+//                        rtbConsoleLog.SelectionColor = Color.Red;
+//                        break;
+//                }
 
-        private void ConnectToOPC()
-        {
-            try
-            {
-                opcClient = new OpcClient("opc.tcp://DESKTOP-5RMLPFJ:53530/OPCUA/SimulationServer");
-                opcClient.Connect();
+//                rtbConsoleLog.AppendText($"{message}{Environment.NewLine}");
+//                rtbConsoleLog.ScrollToCaret();
+//            });
+//        }
 
-                OpcStatusLED.LedColor = Color.Lime;
-                OpcStatusLED.IsOn = true;
+//        private void ConnectToOPC()
+//        {
+//            try
+//            {
+//                opcClient = new OpcClient("opc.tcp://DESKTOP-5RMLPFJ:53530/OPCUA/SimulationServer");
+//                opcClient.Connect();
 
-                MachineStatusLED.LedColor = Color.Lime;
-                MachineStatusLED.IsOn = true;
+//                OpcStatusLED.LedColor = Color.Lime;
+//                OpcStatusLED.IsOn = true;
 
-                this.BackColor = SystemColors.Control;
-                LogToConsole("System: Connected to OPC UA Server successfully.");
+//                MachineStatusLED.LedColor = Color.Lime;
+//                MachineStatusLED.IsOn = true;
 
-                counterSubscription = opcClient.SubscribeDataChange("ns=3;i=1001", HandleCounterChanged);
+//                tabPage1.BackColor = SystemColors.Control;
+//                LogToConsole("System: Connected to OPC UA Server successfully.", LogType.Info);
 
-                tempSubscription = opcClient.SubscribeDataChange("ns=3;i=1008", HandleTemperatureChanged);
+//                counterSubscription = opcClient.SubscribeDataChange("ns=3;i=1001", HandleCounterChanged);
+//                tempSubscription = opcClient.SubscribeDataChange("ns=3;i=1008", HandleTemperatureChanged);
 
-                LogToConsole("System: Live monitoring activated for Counter and Temperature.");
-            }
-            catch (Exception ex)
-            {
-                OpcStatusLED.LedColor = Color.Red;
-                OpcStatusLED.IsOn = true;
-                MachineStatusLED.LedColor = Color.Red;
-                MachineStatusLED.IsOn = true;
-                this.BackColor = Color.MistyRose;
+//                LogToConsole("System: Live monitoring activated for Counter and Temperature.", LogType.Info);
+//            }
+//            catch (Exception ex)
+//            {
+//                OpcStatusLED.LedColor = Color.Red;
+//                OpcStatusLED.IsOn = true;
+//                MachineStatusLED.LedColor = Color.Red;
+//                MachineStatusLED.IsOn = true;
+//                tabPage1.BackColor = Color.MistyRose;
 
-                LogToConsole($"CRITICAL ERROR: PLC Connection Lost! {ex.Message}");
-                MessageBox.Show("OPC UA Connection failed: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+//                LogToConsole($"CRITICAL ERROR: PLC Connection Lost! {ex.Message}", LogType.Error);
+//                MessageBox.Show("OPC UA Connection failed: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+//            }
+//        }
 
-        private void HandleCounterChanged(object sender, OpcDataChangeReceivedEventArgs e)
-        {
-            if (this.IsDisposed || this.Disposing) return;
+//        private void HandleCounterChanged(object sender, OpcDataChangeReceivedEventArgs e)
+//        {
+//            if (tabPage1.IsDisposed || tabPage1.Disposing) return;
 
-            this.Invoke((MethodInvoker)delegate
-            {
-                if (e.Item != null && e.Item.Value != null)
-                {
-                    int currentCountFromPLC = Convert.ToInt32(e.Item.Value.Value);
-                    int targetQty = Convert.ToInt32(txtTargetQty.Text);
+//            tabPage1.Invoke((MethodInvoker)delegate
+//            {
+//                if (e.Item != null && e.Item.Value != null)
+//                {
+//                    int currentCountFromPLC = Convert.ToInt32(e.Item.Value.Value);
+//                    int targetQty = Convert.ToInt32(txtTargetQty.Text);
 
-                    if (currentCountFromPLC <= targetQty)
-                    {
-                        lblCurrentCountValue.Text = $"{currentCountFromPLC} / {targetQty}";
-                    }
+//                    if (currentCountFromPLC <= targetQty)
+//                    {
+//                        lblCurrentCountValue.Text = $"{currentCountFromPLC} / {targetQty}";
+//                    }
 
-                    if (currentCountFromPLC >= targetQty)
-                    {
-                        lblCurrentCountValue.Text = $"{targetQty} / {targetQty}";
+//                    if (currentCountFromPLC >= targetQty)
+//                    {
+//                        lblCurrentCountValue.Text = $"{targetQty} / {targetQty}";
 
-                        LogToConsole("SUCCESS: Production Target Reached! Stopping the node counter...");
+//                        LogToConsole("SUCCESS: Production Target Reached! Stopping the node counter...", LogType.Warning);
 
-                        try
-                        {
-                            if (opcClient != null && opcClient.State == OpcClientState.Connected)
-                            {
-                                var resetCounterNode = new OpcWriteNode("ns=3;i=1001", 0);
-                                opcClient.WriteNodes(resetCounterNode);
-                                LogToConsole("System: Sent Reset command to Node i=1001 to stop counting.");
+//                        try
+//                        {
+//                            if (opcClient != null && opcClient.State == OpcClientState.Connected)
+//                            {
+//                                var resetCounterNode = new OpcWriteNode("ns=3;i=1001", 0);
+//                                opcClient.WriteNodes(resetCounterNode);
+//                                LogToConsole("System: Sent Reset command to Node i=1001 to stop counting.", LogType.Info);
 
-                                var stopNode = new OpcWriteNode("ns=3;i=1009", false);
-                                opcClient.WriteNodes(stopNode);
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            LogToConsole($"PLC Stop Error: {ex.Message}");
-                        }
+//                                var stopNode = new OpcWriteNode("ns=3;i=1009", false);
+//                                opcClient.WriteNodes(stopNode);
+//                            }
+//                        }
+//                        catch (Exception ex)
+//                        {
+//                            LogToConsole($"PLC Stop Error: {ex.Message}", LogType.Error);
+//                        }
 
-                        MachineStatusLED.LedColor = Color.Gray;
-                        MachineStatusLED.IsOn = false;
+//                        MachineStatusLED.LedColor = Color.Gray;
+//                        MachineStatusLED.IsOn = false;
 
-                        if (counterSubscription != null)
-                        {
-                            counterSubscription.Unsubscribe();
-                            LogToConsole("System: Counter subscription paused.");
-                        }
+//                        if (counterSubscription != null)
+//                        {
+//                            counterSubscription.Unsubscribe();
+//                            LogToConsole("System: Counter subscription paused.", LogType.Info);
+//                        }
 
-                        this.BackColor = Color.LightGreen;
+//                        tabPage1.BackColor = Color.LightGreen;
+//                        PlayIndustrialAlarm();
 
-                        PlayIndustrialAlarm();
+//                        MessageBox.Show("Production Target Reached Successfully!\nMachine and Counter Node stopped.",
+//                                        "Order Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+//                    }
+//                }
+//            });
+//        }
 
-                        MessageBox.Show("Production Target Reached Successfully!\nMachine and Counter Node stopped.",
-                                        "Order Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-            });
-        }
+//        private void HandleTemperatureChanged(object sender, OpcDataChangeReceivedEventArgs e)
+//        {
+//            if (this.IsDisposed || this.Disposing) return;
 
-        private void HandleTemperatureChanged(object sender, OpcDataChangeReceivedEventArgs e)
-        {
-            if (this.IsDisposed || this.Disposing) return;
+//            this.Invoke((MethodInvoker)delegate
+//            {
+//                if (e.Item != null && e.Item.Value != null)
+//                {
+//                    double currentTemp = Convert.ToDouble(e.Item.Value.Value);
+//                    lblOvenTempValue.Text = $"{currentTemp:F1} °C";
+//                }
+//            });
+//        }
 
-            this.Invoke((MethodInvoker)delegate
-            {
-                if (e.Item != null && e.Item.Value != null)
-                {
-                    double currentTemp = Convert.ToDouble(e.Item.Value.Value);
-                    lblOvenTempValue.Text = $"{currentTemp:F1} °C";
-                }
-            });
-        }
+//        private async Task LoadActiveWorkOrders()
+//        {
+//            try
+//            {
+//                string apiURL = "https://localhost:7088/api/WorkOrders/GetReleasedWO";
+//                var response = await client.GetAsync(apiURL);
+//                if (response.IsSuccessStatusCode)
+//                {
+//                    string jsonString = await response.Content.ReadAsStringAsync();
+//                    var workOrders = Newtonsoft.Json.JsonConvert.DeserializeObject<List<WorkOrderDTO>>(jsonString);
+//                    dgvWorkOrders.DataSource = workOrders;
+//                    FormatDataGridView();
+//                }
+//            }
+//            catch (Exception ex)
+//            {
+//                MessageBox.Show($"Could not connect to ERP Server: {ex.Message}", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+//            }
+//        }
 
-        private void btnStartPro_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtWorkOrderCode.Text))
-            {
-                MessageBox.Show("Please select a Work Order from the table first!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            ConnectToOPC();
-            alarmTimer.Stop();
-            this.BackColor = SystemColors.Control;
-        }
+//        private void FormatDataGridView()
+//        {
+//            dgvWorkOrders.Columns["WorkOrderCode"].HeaderText = "Order Code";
+//            dgvWorkOrders.Columns["ProductName"].HeaderText = "Item Name";
+//            dgvWorkOrders.Columns["TargetQuantity"].HeaderText = "Target Qty";
+//            dgvWorkOrders.Columns["TargetTemperature"].HeaderText = "Target Temp (°C)";
+//            dgvWorkOrders.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+//            dgvWorkOrders.Columns[dgvWorkOrders.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+//        }
 
-        private void btnStopProduction_Click(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(txtTargetQty.Text))
-            {
-                string[] parts = lblCurrentCountValue.Text.Split('/');
-                int currentCount = parts.Length > 0 ? Convert.ToInt32(parts[0].Trim()) : 0;
-                int targetQty = Convert.ToInt32(txtTargetQty.Text);
+//        private async void OpcUaForm_Load(object sender, EventArgs e) => await LoadActiveWorkOrders();
 
-                if (currentCount < targetQty)
-                {
-                    int scrapCount = targetQty - currentCount;
-                    LogToConsole($"PRODUCTION STOPPED: Target was {targetQty}, Completed: {currentCount}. Scrap detected: {scrapCount} units.");
-                    MessageBox.Show($"Production stopped early! Scrap units detected: {scrapCount}", "Scrap Report", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-        }
+//        private void PlayIndustrialAlarm()
+//        {
+//            for (int i = 0; i < 3; i++)
+//            {
+//                Console.Beep(1500, 150);
+//                Console.Beep(1000, 150);
+//            }
+//        }
 
-        private async Task LoadActiveWorkOrders()
-        {
-            try
-            {
-                string apiURL = "https://localhost:7088/api/WorkOrders/GetReleasedWO";
-                var response = await client.GetAsync(apiURL);
-                if (response.IsSuccessStatusCode)
-                {
-                    string jsonString = await response.Content.ReadAsStringAsync();
-                    var workOrders = Newtonsoft.Json.JsonConvert.DeserializeObject<List<WorkOrderDTO>>(jsonString);
-                    dgvWorkOrders.DataSource = workOrders;
-                    FormatDataGridView();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Could not connect to ERP Server: {ex.Message}", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+//        private void alarmTimer_Tick(object sender, EventArgs e)
+//        {
+//            isAlarmColorToggle = !isAlarmColorToggle;
 
-        private void FormatDataGridView()
-        {
-            dgvWorkOrders.Columns["WorkOrderCode"].HeaderText = "Order Code";
-            dgvWorkOrders.Columns["ProductName"].HeaderText = "Item Name";
-            dgvWorkOrders.Columns["TargetQuantity"].HeaderText = "Target Qty";
-            dgvWorkOrders.Columns["TargetTemperature"].HeaderText = "Target Temp (°C)";
-            dgvWorkOrders.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            dgvWorkOrders.Columns[dgvWorkOrders.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-        }
+//            if (isAlarmColorToggle)
+//            {
+//                tabPage1.BackColor = Color.Red;
+//                Console.Beep(1200, 200);
+//            }
+//            else
+//            {
+//                tabPage1.BackColor = SystemColors.Control;
+//            }
+//        }
 
-        private async void OpcUaForm_Load(object sender, EventArgs e) => await LoadActiveWorkOrders();
+//        private void recipeManagementToolStripMenuItem_Click(object sender, EventArgs e)
+//        {
+//            tabControl1.SelectedIndex = 1;
+//        }
 
-        private void dgvWorkOrders_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = dgvWorkOrders.Rows[e.RowIndex];
-                txtWorkOrderCode.Text = row.Cells["WorkOrderCode"].Value?.ToString() ?? "";
-                txtItemName.Text = row.Cells["ProductName"].Value?.ToString() ?? "";
-                txtTargetQty.Text = row.Cells["TargetQuantity"].Value?.ToString() ?? "0";
-                numTargetTemp.Value = Convert.ToDecimal(row.Cells["TargetTemperature"].Value ?? 0);
-                lblCurrentCountValue.Text = $"0 / {txtTargetQty.Text}";
-            }
-        }
-        private void PlayIndustrialAlarm()
-        {
-            
-            for (int i = 0; i < 3; i++)
-            {
-                Console.Beep(1500, 150); 
-                Console.Beep(1000, 150); 
-            }
-        }
+//        private void mainDashboardToolStripMenuItem_Click(object sender, EventArgs e)
+//        {
+//            tabControl1.SelectedIndex = 0;
+//        }
 
-        private void btnStopProduction_Click_1(object sender, EventArgs e)
-        {
-           
-            if (opcClient == null || opcClient.State != OpcClientState.Connected)
-            {
-                LogToConsole("Warning: Cannot send STOP command. OPC UA Server is not connected.");
-                return;
-            }
+//        private void dgvWorkOrders_CellClick_1(object sender, DataGridViewCellEventArgs e)
+//        {
+//            if (e.RowIndex >= 0)
+//            {
+//                DataGridViewRow row = dgvWorkOrders.Rows[e.RowIndex];
+//                txtWorkOrderCode.Text = row.Cells["WorkOrderCode"].Value?.ToString() ?? "";
+//                txtItemName.Text = row.Cells["ProductName"].Value?.ToString() ?? "";
+//                txtTargetQty.Text = row.Cells["TargetQuantity"].Value?.ToString() ?? "0";
+//                numTargetTemp.Value = Convert.ToDecimal(row.Cells["TargetTemperature"].Value ?? 0);
+//                lblCurrentCountValue.Text = $"0 / {txtTargetQty.Text}";
+//            }
+//        }
 
-            try
-            {
-                LogToConsole("🚨 CRITICAL ACTION: Operator pressed PAUSE/STOP Production!");
+//        private void btnWriteSettingss_Click_1(object sender, EventArgs e)
+//        {
+//            if (opcClient == null || opcClient.State != OpcClientState.Connected)
+//            {
+//                LogToConsole("Error: OPC UA Server is not connected!", LogType.Error);
+//                return;
+//            }
 
-                var stopMachineNode = new OpcWriteNode("ns=3;i=1008", false);
-                opcClient.WriteNodes(stopMachineNode);
-                LogToConsole("System [PLC]: Sent STOP command to Node i=1008");
+//            try
+//            {
+//                double targetTemp = (double)numTargetTemp.Value;
+//                var nodeToWrite = new OpcWriteNode("ns=3;i=1008", targetTemp);
+//                opcClient.WriteNodes(nodeToWrite);
+//                LogToConsole($"Success: Sent Target Temperature ({targetTemp} °C) to PLC.", LogType.Info);
+//            }
+//            catch (Exception ex)
+//            {
+//                LogToConsole($"Writing Error: {ex.Message}", LogType.Error);
+//            }
+//        }
 
-                if (counterSubscription != null)
-                {
-                    counterSubscription.Unsubscribe();
-                    LogToConsole("System: Counter live subscription paused.");
-                }
+//        private void btnStartPro_Click_1(object sender, EventArgs e)
+//        {
+//            if (string.IsNullOrEmpty(txtWorkOrderCode.Text))
+//            {
+//                MessageBox.Show("Please select a Work Order from the table first!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+//                return;
+//            }
+//            ConnectToOPC();
+//            alarmTimer.Stop();
+//            tabPage1.BackColor = SystemColors.Control;
+//        }
 
-                MachineStatusLED.LedColor = Color.Red;
-                MachineStatusLED.IsOn = true;
-                OpcStatusLED.LedColor = Color.Red;
-                OpcStatusLED.IsOn = true;
+//        private void btnStopProduction_Click_2(object sender, EventArgs e)
+//        {
+//            if (opcClient == null || opcClient.State != OpcClientState.Connected)
+//            {
+//                LogToConsole("Warning: Cannot send STOP command. OPC UA Server is not connected.", LogType.Warning);
+//                return;
+//            }
 
-                alarmTimer.Start();
+//            try
+//            {
+//                LogToConsole("🚨 CRITICAL ACTION: Operator pressed PAUSE/STOP Production!", LogType.Warning);
 
-                if (!string.IsNullOrEmpty(txtTargetQty.Text))
-                {
-                    string[] parts = lblCurrentCountValue.Text.Split('/');
-                    int currentCount = parts.Length > 0 ? Convert.ToInt32(parts[0].Trim()) : 0;
-                    int targetQty = Convert.ToInt32(txtTargetQty.Text);
-                    int scrapCount = targetQty - currentCount;
+//                var stopMachineNode = new OpcWriteNode("ns=3;i=1008", false);
+//                opcClient.WriteNodes(stopMachineNode);
+//                LogToConsole("System [PLC]: Sent STOP command to Node i=1008", LogType.Info);
 
-                    MessageBox.Show($"🚨 EMERGENCY STOP TRIGGERED!\nProduction halted early.\nScrap/Missing: {scrapCount} units.",
-                                    "Emergency Stop", MessageBoxButtons.OK, MessageBoxIcon.Error);
+//                if (counterSubscription != null)
+//                {
+//                    counterSubscription.Unsubscribe();
+//                    LogToConsole("System: Counter live subscription paused.", LogType.Info);
+//                }
 
-                }
-            }
-            catch (Exception ex)
-            {
-                LogToConsole($"Error during manual stop: {ex.Message}");
-            }
-        }
+//                MachineStatusLED.LedColor = Color.Red;
+//                MachineStatusLED.IsOn = true;
+//                OpcStatusLED.LedColor = Color.Red;
+//                OpcStatusLED.IsOn = true;
 
-        private void alarmTimer_Tick(object sender, EventArgs e)
-        {
-            isAlarmColorToggle = !isAlarmColorToggle;
+//                alarmTimer.Start();
 
-            if (isAlarmColorToggle)
-            {
-                this.BackColor = Color.Red;
+//                if (!string.IsNullOrEmpty(txtTargetQty.Text))
+//                {
+//                    string[] parts = lblCurrentCountValue.Text.Split('/');
+//                    int currentCount = parts.Length > 0 ? Convert.ToInt32(parts[0].Trim()) : 0;
+//                    int targetQty = Convert.ToInt32(txtTargetQty.Text);
+//                    int scrapCount = targetQty - currentCount;
 
-                Console.Beep(1200, 200);
-            }
-            else
-            {
-                this.BackColor = SystemColors.Control;
-            }
-        }
+//                    MessageBox.Show($"🚨 EMERGENCY STOP TRIGGERED!\nProduction halted early.\nScrap/Missing: {scrapCount} units.",
+//                                    "Emergency Stop", MessageBoxButtons.OK, MessageBoxIcon.Error);
+//                }
+//            }
+//            catch (Exception ex)
+//            {
+//                LogToConsole($"Error during manual stop: {ex.Message}", LogType.Error);
+//            }
+//        }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (alarmTimer.Enabled)
-            {
-                alarmTimer.Stop(); 
-                this.BackColor = Color.Khaki; 
-                LogToConsole("Operator acknowledged the alarm. Siren muted.");
-            }
-        }
-    }
-}
+//        private void btnAlarmStop_Click(object sender, EventArgs e)
+//        {
+//            if (alarmTimer.Enabled)
+//            {
+//                alarmTimer.Stop();
+//                tabPage1.BackColor = Color.Khaki;
+//                LogToConsole("Operator acknowledged the alarm. Siren muted.", LogType.Info);
+//            }
+//        }
+
+//        private async void btnResetForm_Click(object sender, EventArgs e)
+//        {
+//            tabPage1.BackColor = SystemColors.Control;
+
+//            txtWorkOrderCode.Clear();
+//            txtItemName.Clear();
+//            txtTargetQty.Clear();
+//            numTargetTemp.Value = 0;
+
+//            lblCurrentCountValue.Text = "0 / 0";
+//            lblOvenTempValue.Text = "0.0 °C";
+
+//            await LoadActiveWorkOrders();
+
+//            LogToConsole("System: Dashboard reset successfully. Ready for a new Work Order.", LogType.Info);
+//        }
+
+//        private void groupBox4_Enter(object sender, EventArgs e)
+//        {
+
+//        }
+
+//        private void tabPage1_Click(object sender, EventArgs e)
+//        {
+
+//        }
+//    }
+
+ 
+//}

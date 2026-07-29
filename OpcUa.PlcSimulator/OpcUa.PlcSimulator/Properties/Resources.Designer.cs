@@ -63,9 +63,9 @@ namespace OpcUa.PlcSimulator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_mute_sound_24 {
+        internal static System.Drawing.Bitmap rfid__2_ {
             get {
-                object obj = ResourceManager.GetObject("icons8-mute-sound-24", resourceCulture);
+                object obj = ResourceManager.GetObject("rfid (2)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,19 +73,9 @@ namespace OpcUa.PlcSimulator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_mute_sound_32 {
+        internal static System.Drawing.Bitmap rfid__3_ {
             get {
-                object obj = ResourceManager.GetObject("icons8-mute-sound-32", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_mute_sound_66 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-mute-sound-66", resourceCulture);
+                object obj = ResourceManager.GetObject("rfid (3)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

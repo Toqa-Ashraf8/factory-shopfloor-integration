@@ -1,14 +1,14 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "G:\\Github-Workspace\\factory-shopfloor-integration\\OpcUa.PlcSimulator\\",
+  "WorkspaceRootPath": "G:\\FACTORY\\factory-shopfloor-integration\\OpcUa.PlcSimulator\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{591B8792-D0B6-4A1F-9B1A-826D3AC2434D}|OpcUa.PlcSimulator\\OpcUa.PlcSimulator.csproj|g:\\github-workspace\\factory-shopfloor-integration\\opcua.plcsimulator\\opcua.plcsimulator\\opcuaform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{591B8792-D0B6-4A1F-9B1A-826D3AC2434D}|OpcUa.PlcSimulator\\OpcUa.PlcSimulator.csproj|solutionrelative:opcua.plcsimulator\\opcuaform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{591B8792-D0B6-4A1F-9B1A-826D3AC2434D}|OpcUa.PlcSimulator\\OpcUa.PlcSimulator.csproj|g:\\factory\\factory-shopfloor-integration\\opcua.plcsimulator\\opcua.plcsimulator\\frmstationconsole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{591B8792-D0B6-4A1F-9B1A-826D3AC2434D}|OpcUa.PlcSimulator\\OpcUa.PlcSimulator.csproj|solutionrelative:opcua.plcsimulator\\frmstationconsole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{591B8792-D0B6-4A1F-9B1A-826D3AC2434D}|OpcUa.PlcSimulator\\OpcUa.PlcSimulator.csproj|G:\\Github-Workspace\\factory-shopfloor-integration\\OpcUa.PlcSimulator\\opcua.plcsimulator\\opcuaform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{591B8792-D0B6-4A1F-9B1A-826D3AC2434D}|OpcUa.PlcSimulator\\OpcUa.PlcSimulator.csproj|solutionrelative:opcua.plcsimulator\\opcuaform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{591B8792-D0B6-4A1F-9B1A-826D3AC2434D}|OpcUa.PlcSimulator\\OpcUa.PlcSimulator.csproj|g:\\factory\\factory-shopfloor-integration\\opcua.plcsimulator\\opcua.plcsimulator\\frmstationconsole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{591B8792-D0B6-4A1F-9B1A-826D3AC2434D}|OpcUa.PlcSimulator\\OpcUa.PlcSimulator.csproj|solutionrelative:opcua.plcsimulator\\frmstationconsole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,36 +18,35 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "OpcUaForm.cs",
-              "DocumentMoniker": "G:\\Github-Workspace\\factory-shopfloor-integration\\OpcUa.PlcSimulator\\OpcUa.PlcSimulator\\OpcUaForm.cs",
-              "RelativeDocumentMoniker": "OpcUa.PlcSimulator\\OpcUaForm.cs",
-              "ToolTip": "G:\\Github-Workspace\\factory-shopfloor-integration\\OpcUa.PlcSimulator\\OpcUa.PlcSimulator\\OpcUaForm.cs",
-              "RelativeToolTip": "OpcUa.PlcSimulator\\OpcUaForm.cs",
-              "ViewState": "AgIAACcBAAAAAAAAAAAcwEABAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-16T14:11:17.285Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "OpcUaForm.cs [Design]",
-              "DocumentMoniker": "G:\\Github-Workspace\\factory-shopfloor-integration\\OpcUa.PlcSimulator\\OpcUa.PlcSimulator\\OpcUaForm.cs",
-              "RelativeDocumentMoniker": "OpcUa.PlcSimulator\\OpcUaForm.cs",
-              "ToolTip": "G:\\Github-Workspace\\factory-shopfloor-integration\\OpcUa.PlcSimulator\\OpcUa.PlcSimulator\\OpcUaForm.cs [Design]",
-              "RelativeToolTip": "OpcUa.PlcSimulator\\OpcUaForm.cs [Design]",
+              "DocumentIndex": 0,
+              "Title": "FrmStationConsole.cs",
+              "DocumentMoniker": "G:\\FACTORY\\factory-shopfloor-integration\\OpcUa.PlcSimulator\\OpcUa.PlcSimulator\\FrmStationConsole.cs",
+              "RelativeDocumentMoniker": "OpcUa.PlcSimulator\\FrmStationConsole.cs",
+              "ToolTip": "G:\\FACTORY\\factory-shopfloor-integration\\OpcUa.PlcSimulator\\OpcUa.PlcSimulator\\FrmStationConsole.cs",
+              "RelativeToolTip": "OpcUa.PlcSimulator\\FrmStationConsole.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGQAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-16T14:01:54.424Z",
+              "WhenOpened": "2026-07-29T11:35:36.471Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FrmStationConsole.cs [Design]",
+              "DocumentMoniker": "G:\\FACTORY\\factory-shopfloor-integration\\OpcUa.PlcSimulator\\OpcUa.PlcSimulator\\FrmStationConsole.cs",
+              "RelativeDocumentMoniker": "OpcUa.PlcSimulator\\FrmStationConsole.cs",
+              "ToolTip": "G:\\FACTORY\\factory-shopfloor-integration\\OpcUa.PlcSimulator\\OpcUa.PlcSimulator\\FrmStationConsole.cs [Design]",
+              "RelativeToolTip": "OpcUa.PlcSimulator\\FrmStationConsole.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-20T18:58:36.788Z",
               "EditorCaption": " [Design]"
             }
           ]

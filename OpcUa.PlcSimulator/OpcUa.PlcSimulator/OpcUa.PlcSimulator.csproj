@@ -81,28 +81,35 @@
     <Compile Include="IndustrialLed.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="OpcUaForm.cs">
+    <Compile Include="FrmStationConsole.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FrmStationConsole.Designer.cs">
+      <DependentUpon>FrmStationConsole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OpcUaForm.cs" />
     <Compile Include="OpcUaForm.Designer.cs">
       <DependentUpon>OpcUaForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="WorkOrderDTO.cs" />
+    <EmbeddedResource Include="FrmStationConsole.resx">
+      <DependentUpon>FrmStationConsole.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OpcUaForm.resx">
       <DependentUpon>OpcUaForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -118,13 +125,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\icons8-mute-sound-24.png" />
+    <None Include="Resources\rfid %282%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\icons8-mute-sound-66.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-mute-sound-32.png" />
+    <None Include="Resources\rfid %283%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

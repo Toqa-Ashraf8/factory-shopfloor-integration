@@ -16,7 +16,7 @@ namespace OpcUa.PlcSimulator
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new OpcUaForm());
+            Application.Run(new FrmStationConsole());
         }
     }
 }
