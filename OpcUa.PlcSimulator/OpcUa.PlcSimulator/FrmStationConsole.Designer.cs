@@ -29,27 +29,37 @@
         private void InitializeComponent()
         {
             this.pnlLogin = new System.Windows.Forms.Panel();
+            this.lblRfidStatus = new System.Windows.Forms.Label();
+            this.iconPanel = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.txtRfidInput = new System.Windows.Forms.TextBox();
-            this.btnSimulateScan = new System.Windows.Forms.Button();
             this.lblScanPrompt = new System.Windows.Forms.Label();
             this.pnlHeader = new System.Windows.Forms.Panel();
+            this.pnlWorkerHeaders = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.lblShift = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblStationTitle = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblDateTitle = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
             this.lblSystemStatus = new System.Windows.Forms.Label();
             this.lblSystemTitle = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.iconPanel = new System.Windows.Forms.Panel();
-            this.lblRfidStatus = new System.Windows.Forms.Label();
+            this.pnlWorkOrders = new System.Windows.Forms.Panel();
+            this.pnlContentContainer = new System.Windows.Forms.Panel();
+            this.flpWorkOrders = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlLogin.SuspendLayout();
-            this.pnlHeader.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.iconPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.pnlHeader.SuspendLayout();
+            this.pnlWorkerHeaders.SuspendLayout();
+            this.pnlWorkOrders.SuspendLayout();
+            this.pnlContentContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlLogin
@@ -60,19 +70,62 @@
             this.pnlLogin.Controls.Add(this.label2);
             this.pnlLogin.Controls.Add(this.progressBar1);
             this.pnlLogin.Controls.Add(this.txtRfidInput);
-            this.pnlLogin.Controls.Add(this.btnSimulateScan);
             this.pnlLogin.Controls.Add(this.lblScanPrompt);
             this.pnlLogin.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnlLogin.Location = new System.Drawing.Point(5, 100);
             this.pnlLogin.Name = "pnlLogin";
             this.pnlLogin.Size = new System.Drawing.Size(1186, 821);
             this.pnlLogin.TabIndex = 0;
-            this.pnlLogin.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlLogin_Paint);
+            this.pnlLogin.Visible = false;
+            // 
+            // lblRfidStatus
+            // 
+            this.lblRfidStatus.AutoSize = true;
+            this.lblRfidStatus.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRfidStatus.ForeColor = System.Drawing.Color.LightSteelBlue;
+            this.lblRfidStatus.Location = new System.Drawing.Point(841, 698);
+            this.lblRfidStatus.Name = "lblRfidStatus";
+            this.lblRfidStatus.Size = new System.Drawing.Size(66, 20);
+            this.lblRfidStatus.TabIndex = 23;
+            this.lblRfidStatus.Text = "Standby";
+            this.lblRfidStatus.Visible = false;
+            // 
+            // iconPanel
+            // 
+            this.iconPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(51)))), ((int)(((byte)(65)))));
+            this.iconPanel.Controls.Add(this.pictureBox1);
+            this.iconPanel.Location = new System.Drawing.Point(334, 75);
+            this.iconPanel.Name = "iconPanel";
+            this.iconPanel.Size = new System.Drawing.Size(486, 370);
+            this.iconPanel.TabIndex = 22;
+            this.iconPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            this.iconPanel.Resize += new System.EventHandler(this.iconPanel_Resize);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::OpcUa.PlcSimulator.Properties.Resources.signal;
+            this.pictureBox1.Location = new System.Drawing.Point(77, 58);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(350, 256);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 18;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.LightSteelBlue;
+            this.label2.Location = new System.Drawing.Point(269, 698);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(93, 20);
+            this.label2.TabIndex = 21;
+            this.label2.Text = "RFID reader";
             // 
             // progressBar1
             // 
             this.progressBar1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.progressBar1.Location = new System.Drawing.Point(281, 726);
+            this.progressBar1.Location = new System.Drawing.Point(273, 673);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(634, 22);
             this.progressBar1.TabIndex = 20;
@@ -85,21 +138,6 @@
             this.txtRfidInput.Size = new System.Drawing.Size(488, 34);
             this.txtRfidInput.TabIndex = 15;
             this.txtRfidInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtRfidInput_KeyDown);
-            // 
-            // btnSimulateScan
-            // 
-            this.btnSimulateScan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(162)))), ((int)(((byte)(184)))));
-            this.btnSimulateScan.FlatAppearance.BorderSize = 0;
-            this.btnSimulateScan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSimulateScan.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSimulateScan.ForeColor = System.Drawing.Color.White;
-            this.btnSimulateScan.Location = new System.Drawing.Point(347, 640);
-            this.btnSimulateScan.Name = "btnSimulateScan";
-            this.btnSimulateScan.Size = new System.Drawing.Size(488, 40);
-            this.btnSimulateScan.TabIndex = 16;
-            this.btnSimulateScan.Text = "Simulate RFID Scan";
-            this.btnSimulateScan.UseVisualStyleBackColor = false;
-            this.btnSimulateScan.Click += new System.EventHandler(this.btnSimulateScan_Click);
             // 
             // lblScanPrompt
             // 
@@ -115,9 +153,10 @@
             // pnlHeader
             // 
             this.pnlHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(43)))), ((int)(((byte)(56)))));
+            this.pnlHeader.Controls.Add(this.pnlWorkerHeaders);
             this.pnlHeader.Controls.Add(this.lblShift);
             this.pnlHeader.Controls.Add(this.label4);
-            this.pnlHeader.Controls.Add(this.label3);
+            this.pnlHeader.Controls.Add(this.lblStationTitle);
             this.pnlHeader.Controls.Add(this.label1);
             this.pnlHeader.Controls.Add(this.lblDateTitle);
             this.pnlHeader.Controls.Add(this.lblDate);
@@ -126,8 +165,66 @@
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(1194, 106);
+            this.pnlHeader.Size = new System.Drawing.Size(1394, 153);
             this.pnlHeader.TabIndex = 23;
+            // 
+            // pnlWorkerHeaders
+            // 
+            this.pnlWorkerHeaders.Controls.Add(this.button1);
+            this.pnlWorkerHeaders.Controls.Add(this.label6);
+            this.pnlWorkerHeaders.Controls.Add(this.label5);
+            this.pnlWorkerHeaders.Controls.Add(this.label3);
+            this.pnlWorkerHeaders.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlWorkerHeaders.Location = new System.Drawing.Point(0, 81);
+            this.pnlWorkerHeaders.Name = "pnlWorkerHeaders";
+            this.pnlWorkerHeaders.Size = new System.Drawing.Size(1394, 72);
+            this.pnlWorkerHeaders.TabIndex = 24;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Red;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.button1.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.button1.Location = new System.Drawing.Point(1041, 7);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(122, 37);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "LOGOUT";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.label6.ForeColor = System.Drawing.Color.LightSteelBlue;
+            this.label6.Location = new System.Drawing.Point(688, 7);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(42, 23);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Line";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.label5.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label5.Location = new System.Drawing.Point(32, 30);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(56, 28);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Toqa";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.label3.ForeColor = System.Drawing.Color.LightSteelBlue;
+            this.label3.Location = new System.Drawing.Point(23, 7);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(79, 23);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Operator";
             // 
             // lblShift
             // 
@@ -151,23 +248,24 @@
             this.label4.TabIndex = 23;
             this.label4.Text = "Shift";
             // 
-            // label3
+            // lblStationTitle
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.LightSteelBlue;
-            this.label3.Location = new System.Drawing.Point(12, 38);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(230, 28);
-            this.label3.TabIndex = 21;
-            this.label3.Text = "Line-01 - Main Assembly";
+            this.lblStationTitle.AutoSize = true;
+            this.lblStationTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStationTitle.ForeColor = System.Drawing.Color.LightSteelBlue;
+            this.lblStationTitle.Location = new System.Drawing.Point(13, 50);
+            this.lblStationTitle.Name = "lblStationTitle";
+            this.lblStationTitle.Size = new System.Drawing.Size(135, 28);
+            this.lblStationTitle.TabIndex = 21;
+            this.lblStationTitle.Text = "Station Name";
+            this.lblStationTitle.Visible = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(13, 10);
+            this.label1.Location = new System.Drawing.Point(13, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(147, 28);
             this.label1.TabIndex = 20;
@@ -215,57 +313,40 @@
             this.lblSystemTitle.TabIndex = 8;
             this.lblSystemTitle.Text = "System:";
             // 
-            // label2
+            // pnlWorkOrders
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.LightSteelBlue;
-            this.label2.Location = new System.Drawing.Point(277, 751);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(93, 20);
-            this.label2.TabIndex = 21;
-            this.label2.Text = "RFID reader";
+            this.pnlWorkOrders.Controls.Add(this.pnlContentContainer);
+            this.pnlWorkOrders.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlWorkOrders.Location = new System.Drawing.Point(0, 153);
+            this.pnlWorkOrders.Name = "pnlWorkOrders";
+            this.pnlWorkOrders.Size = new System.Drawing.Size(1394, 692);
+            this.pnlWorkOrders.TabIndex = 24;
             // 
-            // pictureBox1
+            // pnlContentContainer
             // 
-            this.pictureBox1.Image = global::OpcUa.PlcSimulator.Properties.Resources.signal;
-            this.pictureBox1.Location = new System.Drawing.Point(77, 58);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(350, 256);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 18;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pnlContentContainer.Controls.Add(this.flpWorkOrders);
+            this.pnlContentContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlContentContainer.Location = new System.Drawing.Point(0, 0);
+            this.pnlContentContainer.Name = "pnlContentContainer";
+            this.pnlContentContainer.Size = new System.Drawing.Size(1394, 692);
+            this.pnlContentContainer.TabIndex = 0;
             // 
-            // iconPanel
+            // flpWorkOrders
             // 
-            this.iconPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(51)))), ((int)(((byte)(65)))));
-            this.iconPanel.Controls.Add(this.pictureBox1);
-            this.iconPanel.Location = new System.Drawing.Point(334, 75);
-            this.iconPanel.Name = "iconPanel";
-            this.iconPanel.Size = new System.Drawing.Size(486, 370);
-            this.iconPanel.TabIndex = 22;
-            this.iconPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
-            this.iconPanel.Resize += new System.EventHandler(this.iconPanel_Resize);
-            // 
-            // lblRfidStatus
-            // 
-            this.lblRfidStatus.AutoSize = true;
-            this.lblRfidStatus.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRfidStatus.ForeColor = System.Drawing.Color.LightSteelBlue;
-            this.lblRfidStatus.Location = new System.Drawing.Point(849, 751);
-            this.lblRfidStatus.Name = "lblRfidStatus";
-            this.lblRfidStatus.Size = new System.Drawing.Size(66, 20);
-            this.lblRfidStatus.TabIndex = 23;
-            this.lblRfidStatus.Text = "Standby";
-            this.lblRfidStatus.Visible = false;
+            this.flpWorkOrders.AutoScroll = true;
+            this.flpWorkOrders.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpWorkOrders.Location = new System.Drawing.Point(0, 0);
+            this.flpWorkOrders.Name = "flpWorkOrders";
+            this.flpWorkOrders.Size = new System.Drawing.Size(1394, 692);
+            this.flpWorkOrders.TabIndex = 0;
             // 
             // FrmStationConsole
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(34)))), ((int)(((byte)(45)))));
-            this.ClientSize = new System.Drawing.Size(1194, 933);
+            this.ClientSize = new System.Drawing.Size(1394, 845);
+            this.Controls.Add(this.pnlWorkOrders);
             this.Controls.Add(this.pnlHeader);
             this.Controls.Add(this.pnlLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -277,10 +358,14 @@
             this.Resize += new System.EventHandler(this.FrmStationConsole_Resize);
             this.pnlLogin.ResumeLayout(false);
             this.pnlLogin.PerformLayout();
+            this.iconPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.iconPanel.ResumeLayout(false);
+            this.pnlWorkerHeaders.ResumeLayout(false);
+            this.pnlWorkerHeaders.PerformLayout();
+            this.pnlWorkOrders.ResumeLayout(false);
+            this.pnlContentContainer.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -290,11 +375,10 @@
         private System.Windows.Forms.Panel pnlLogin;
         private System.Windows.Forms.Label lblScanPrompt;
         private System.Windows.Forms.TextBox txtRfidInput;
-        private System.Windows.Forms.Button btnSimulateScan;
         private System.Windows.Forms.Panel pnlHeader;
         private System.Windows.Forms.Label lblShift;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblStationTitle;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblDateTitle;
         private System.Windows.Forms.Label lblDate;
@@ -305,5 +389,13 @@
         private System.Windows.Forms.Panel iconPanel;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblRfidStatus;
+        private System.Windows.Forms.Panel pnlWorkOrders;
+        private System.Windows.Forms.Panel pnlWorkerHeaders;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Panel pnlContentContainer;
+        private System.Windows.Forms.FlowLayoutPanel flpWorkOrders;
     }
 }
