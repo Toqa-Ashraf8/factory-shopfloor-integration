@@ -1,0 +1,12 @@
+## Visual Studio Temporary & Build Files
+.vs/
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Packages
+*.nupkg
+packages/
