@@ -11,6 +11,7 @@ namespace OpcUa.PlcSimulator
     public class StationService
     {
         private readonly HttpClient _httpClient;
+
         public StationService()
         {
             _httpClient = new HttpClient
@@ -18,11 +19,13 @@ namespace OpcUa.PlcSimulator
                 BaseAddress = new Uri("http://localhost:5223/api/")
             };
         }
+
         public int GetConfiguredStationId()
         {
             string stationIdConfig = ConfigurationManager.AppSettings["WorkCenterId"];
             return int.TryParse(stationIdConfig, out int id) ? id : 1;
         }
+
         public async Task<JObject> GetStationDetails(int stationId)
         {
             try
@@ -38,6 +41,7 @@ namespace OpcUa.PlcSimulator
 
             return null;
         }
+
         public async Task<(bool IsSuccess, string OperatorName, string Qualification, string Message)> AuthenticateOperator(string rfidTag)
         {
             try
@@ -61,11 +65,12 @@ namespace OpcUa.PlcSimulator
                 return (false, null, null, $"API Connection Error: {ex.Message}");
             }
         }
+
         public async Task<JArray> GetWorkOrdersForStation()
         {
             try
             {
-                var response = await _httpClient.GetAsync($"WorkOrders/station");
+                var response = await _httpClient.GetAsync("WorkOrders/station");
                 if (response.IsSuccessStatusCode)
                 {
                     string json = await response.Content.ReadAsStringAsync();
@@ -76,6 +81,7 @@ namespace OpcUa.PlcSimulator
 
             return new JArray();
         }
+
         public async Task<bool> StartWorkOrder(int workOrderId)
         {
             try
@@ -88,7 +94,27 @@ namespace OpcUa.PlcSimulator
                 return false;
             }
         }
-        public Panel CreateWorkOrderCard(int woId, string woNumber, string sku, string status, int targetQty)
+
+        // تم تعديل المسار ليتطابق تماماً مع الـ API
+        public async Task<JObject> GetWorkOrderExecutionDetails(string sku)
+        {
+            try
+            {
+                var response = await _httpClient.GetAsync($"WorkOrders/product-details/{sku}");
+                if (response.IsSuccessStatusCode)
+                {
+                    string json = await response.Content.ReadAsStringAsync();
+                    return JObject.Parse(json);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching execution details: {ex.Message}");
+            }
+            return null;
+        }
+
+        public Panel CreateWorkOrderCard(int woId, string woNumber, string sku, string status, int targetQty, Action<int, string, string, int> onCardSelected)
         {
             Panel card = new Panel
             {
@@ -96,8 +122,16 @@ namespace OpcUa.PlcSimulator
                 Height = 150,
                 Margin = new Padding(10),
                 BorderStyle = BorderStyle.FixedSingle,
-                BackColor = Color.FromArgb(235, 238, 242)
+                BackColor = Color.FromArgb(235, 238, 242),
+                Cursor = Cursors.Hand
             };
+
+            EventHandler selectEvent = (sender, e) =>
+            {
+                onCardSelected?.Invoke(woId, woNumber, sku, targetQty);
+            };
+
+            card.Click += selectEvent;
 
             Label lblSku = new Label
             {
@@ -109,16 +143,18 @@ namespace OpcUa.PlcSimulator
                 TextAlign = ContentAlignment.MiddleLeft,
                 Padding = new Padding(5, 0, 0, 0)
             };
+            lblSku.Click += selectEvent;
 
             Label lblWoNumber = new Label
             {
                 Text = $"Work Order:\n{woNumber}",
                 Font = new Font("Segoe UI", 10, FontStyle.Bold),
-                ForeColor = Color.FromArgb(43, 137, 160), 
+                ForeColor = Color.FromArgb(43, 137, 160),
                 Top = 40,
                 Left = 10,
                 AutoSize = true
             };
+            lblWoNumber.Click += selectEvent;
 
             Label lblDetails = new Label
             {
@@ -129,6 +165,7 @@ namespace OpcUa.PlcSimulator
                 Left = 10,
                 AutoSize = true
             };
+            lblDetails.Click += selectEvent;
 
             card.Controls.Add(lblDetails);
             card.Controls.Add(lblWoNumber);

@@ -53,6 +53,14 @@
             this.pnlWorkOrders = new System.Windows.Forms.Panel();
             this.pnlContentContainer = new System.Windows.Forms.Panel();
             this.flpWorkOrders = new System.Windows.Forms.FlowLayoutPanel();
+            this.picInstruction = new System.Windows.Forms.PictureBox();
+            this.pnlStepper = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnBack = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.lblStepProgress = new System.Windows.Forms.Label();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.btnPrevious = new System.Windows.Forms.Button();
+            this.object_63418a41_1776_4140_b532_649918688356 = new System.Windows.Forms.Panel();
             this.pnlLogin.SuspendLayout();
             this.iconPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -60,6 +68,10 @@
             this.pnlWorkerHeaders.SuspendLayout();
             this.pnlWorkOrders.SuspendLayout();
             this.pnlContentContainer.SuspendLayout();
+            this.flpWorkOrders.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picInstruction)).BeginInit();
+            this.pnlStepper.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlLogin
@@ -179,6 +191,7 @@
             this.pnlWorkerHeaders.Name = "pnlWorkerHeaders";
             this.pnlWorkerHeaders.Size = new System.Drawing.Size(1394, 72);
             this.pnlWorkerHeaders.TabIndex = 24;
+            this.pnlWorkerHeaders.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlWorkerHeaders_Paint);
             // 
             // button1
             // 
@@ -334,11 +347,90 @@
             // flpWorkOrders
             // 
             this.flpWorkOrders.AutoScroll = true;
-            this.flpWorkOrders.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpWorkOrders.Controls.Add(this.picInstruction);
+            this.flpWorkOrders.Dock = System.Windows.Forms.DockStyle.Left;
             this.flpWorkOrders.Location = new System.Drawing.Point(0, 0);
             this.flpWorkOrders.Name = "flpWorkOrders";
             this.flpWorkOrders.Size = new System.Drawing.Size(1394, 692);
             this.flpWorkOrders.TabIndex = 0;
+            // 
+            // picInstruction
+            // 
+            this.picInstruction.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picInstruction.Location = new System.Drawing.Point(3, 3);
+            this.picInstruction.Name = "picInstruction";
+            this.picInstruction.Size = new System.Drawing.Size(672, 0);
+            this.picInstruction.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picInstruction.TabIndex = 5;
+            this.picInstruction.TabStop = false;
+            // 
+            // pnlStepper
+            // 
+            this.pnlStepper.Controls.Add(this.btnBack);
+            this.pnlStepper.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlStepper.Location = new System.Drawing.Point(3, 9);
+            this.pnlStepper.Name = "pnlStepper";
+            this.pnlStepper.Size = new System.Drawing.Size(1402, 101);
+            this.pnlStepper.TabIndex = 9;
+            // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(3, 3);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(143, 40);
+            this.btnBack.TabIndex = 7;
+            this.btnBack.Text = "Back";
+            this.btnBack.UseVisualStyleBackColor = true;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.lblStepProgress);
+            this.panel2.Controls.Add(this.btnNext);
+            this.panel2.Controls.Add(this.btnPrevious);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(3, 116);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1402, 98);
+            this.panel2.TabIndex = 11;
+            // 
+            // lblStepProgress
+            // 
+            this.lblStepProgress.AutoSize = true;
+            this.lblStepProgress.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStepProgress.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblStepProgress.Location = new System.Drawing.Point(696, 36);
+            this.lblStepProgress.Name = "lblStepProgress";
+            this.lblStepProgress.Size = new System.Drawing.Size(63, 25);
+            this.lblStepProgress.TabIndex = 2;
+            this.lblStepProgress.Text = "label2";
+            // 
+            // btnNext
+            // 
+            this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNext.Image = global::OpcUa.PlcSimulator.Properties.Resources.icons8_right_arrow_48;
+            this.btnNext.Location = new System.Drawing.Point(1023, 13);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(63, 54);
+            this.btnNext.TabIndex = 1;
+            this.btnNext.UseVisualStyleBackColor = true;
+            // 
+            // btnPrevious
+            // 
+            this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrevious.Image = global::OpcUa.PlcSimulator.Properties.Resources.icons8_left_arrow_48;
+            this.btnPrevious.Location = new System.Drawing.Point(405, 13);
+            this.btnPrevious.Name = "btnPrevious";
+            this.btnPrevious.Size = new System.Drawing.Size(63, 54);
+            this.btnPrevious.TabIndex = 0;
+            this.btnPrevious.UseVisualStyleBackColor = true;
+            // 
+            // object_63418a41_1776_4140_b532_649918688356
+            // 
+            this.object_63418a41_1776_4140_b532_649918688356.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.object_63418a41_1776_4140_b532_649918688356.Location = new System.Drawing.Point(0, 0);
+            this.object_63418a41_1776_4140_b532_649918688356.Name = "object_63418a41_1776_4140_b532_649918688356";
+            this.object_63418a41_1776_4140_b532_649918688356.Size = new System.Drawing.Size(1394, 845);
+            this.object_63418a41_1776_4140_b532_649918688356.TabIndex = 0;
             // 
             // FrmStationConsole
             // 
@@ -366,6 +458,11 @@
             this.pnlWorkerHeaders.PerformLayout();
             this.pnlWorkOrders.ResumeLayout(false);
             this.pnlContentContainer.ResumeLayout(false);
+            this.flpWorkOrders.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picInstruction)).EndInit();
+            this.pnlStepper.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -397,5 +494,13 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel pnlContentContainer;
         private System.Windows.Forms.FlowLayoutPanel flpWorkOrders;
+        private System.Windows.Forms.PictureBox picInstruction;
+        private System.Windows.Forms.FlowLayoutPanel pnlStepper;
+        private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label lblStepProgress;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Button btnPrevious;
+        private System.Windows.Forms.Panel object_63418a41_1776_4140_b532_649918688356;
     }
 }

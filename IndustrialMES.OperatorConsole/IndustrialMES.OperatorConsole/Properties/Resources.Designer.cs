@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OpcUa.PlcSimulator.Properties {
+namespace IndustrialMES.OperatorConsole.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace OpcUa.PlcSimulator.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("OpcUa.PlcSimulator.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("IndustrialMES.OperatorConsole.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,6 +63,16 @@ namespace OpcUa.PlcSimulator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_forward_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-forward-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_left_arrow_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-left-arrow-48", resourceCulture);
@@ -76,16 +86,6 @@ namespace OpcUa.PlcSimulator.Properties {
         internal static System.Drawing.Bitmap icons8_right_arrow_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-right-arrow-48", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap signal {
-            get {
-                object obj = ResourceManager.GetObject("signal", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
