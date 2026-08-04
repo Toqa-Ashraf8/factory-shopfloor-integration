@@ -57,6 +57,6 @@ WinForms (.NET) · custom-drawn controls (`GraphicsPath`) · REST client · OPC 
 ## Run
 
 ```bash
-git clone <repo-url>
+git clone (https://github.com/Toqa-Ashraf8/nexus-mes-hmi.git)
 # open nexus-mes-hmi.sln, set API base URL, build & run
 ```
